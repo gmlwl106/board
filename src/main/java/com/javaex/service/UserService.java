@@ -23,4 +23,8 @@ public class UserService {
 		}
 	}
 
+	//회원 등록
+	public void join(UserVo userVo) {
+	}
+
 }

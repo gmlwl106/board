@@ -15,7 +15,7 @@ import com.javaex.vo.UserVo;
 public class UserController {
 	
 	@Autowired
-	private UserService userSevice;
+	private UserService userService;
 
 	//회원가입 폼
 	@RequestMapping(value="joinForm", method = {RequestMethod.GET, RequestMethod.POST})
@@ -28,7 +28,14 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="idCheck", method= {RequestMethod.GET, RequestMethod.POST})
 	public String idCheck(@ModelAttribute UserVo userVo) {
-		return userSevice.idCheck(userVo);
+		return userService.idCheck(userVo);
+	}
+	
+	//회원 등록
+	@RequestMapping(value="join", method= {RequestMethod.GET, RequestMethod.POST})
+	public String join(@ModelAttribute UserVo userVo) {
+		userService.join(userVo);
+		return "";
 	}
 	
 	//로그인 폼
