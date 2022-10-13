@@ -50,10 +50,10 @@
 							<colgroup>
 								<col style="width: 50px;">
 								<col style="width: 70px;">
-								<col style="width: 460px;">
+								<col style="width: 430px;">
 								<col style="width: 50px;">
-								<col style="width: 70px;">
-								<col style="width: 70px;">
+								<col style="width: 100px;">
+								<col style="width: 100px;">
 								<col style="width: 50px;">
 							</colgroup>
 							<thead>
@@ -68,15 +68,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+								<c:forEach items="${pList }" var="postVo">
+									<tr>
+										<td>${postVo.POSTNO }</td>
+										<td>${postVo.CATENAME }</td>
+										<td>${postVo.TITLE }</td>
+										<td>0</td>
+										<td>${postVo.NAME }</td>
+										<td>${postVo.REGDATE }</td>
+										<td>${postVo.HIT }</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 			

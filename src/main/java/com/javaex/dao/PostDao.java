@@ -1,5 +1,6 @@
 package com.javaex.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,5 +32,11 @@ public class PostDao {
 	//조회수 올리기
 	public int updateHit(int no) {
 		return sqlSession.update("post.updateHit", no);
+	}
+
+
+	//게시글 리스트 가져오기
+	public List<Map<String, Object>> getPostList() {
+		return sqlSession.selectList("post.getPostList");
 	}
 }

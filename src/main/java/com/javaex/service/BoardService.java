@@ -53,6 +53,11 @@ public class BoardService {
 		return map;
 	}
 
+	//게시글 리스트 가져오기
+	public List<Map<String, Object>> getPostList() {
+		return postDao.getPostList();
+	}
+
 	
 
 }

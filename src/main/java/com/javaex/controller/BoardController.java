@@ -22,10 +22,12 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
+	
 	//게시판 리스트 폼
 	@RequestMapping(value="list", method= {RequestMethod.GET, RequestMethod.POST})
-	public String listForm() {
-		
+	public String listForm(Model model) {
+		List<Map<String, Object>> pList = boardService.getPostList();
+		model.addAttribute("pList", pList);
 		return "board/list";
 	}
 	
@@ -48,6 +50,7 @@ public class BoardController {
 		model.addAttribute("cateList", cateList);
 		return "board/writeForm";
 	}
+	
 	
 	//게시글 등록
 	@RequestMapping(value="write", method = {RequestMethod.GET, RequestMethod.POST})

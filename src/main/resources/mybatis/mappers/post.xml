@@ -17,6 +17,23 @@
 		]]>
 	</insert>
 	
+	<!-- 게시글 리스트 가져오기 -->
+	<select id="getPostList" parameterType="int" resultType="map">
+		<![CDATA[
+			select post_no postNo
+			        ,p.category_no cateNo
+			        ,category_name cateName
+			        ,title
+			        ,name
+			        ,to_char(p.reg_date, 'yyyy-mm-dd hh24:mm') regDate
+			        ,hit
+			from post p, category c, users u
+			where p.category_no = c.category_no
+			and p.user_no = u.user_no
+			order by p.reg_date desc
+		]]>
+	</select>
+	
 	<!-- 게시글 가져오기 -->
 	<select id="getPost" parameterType="int" resultType="map">
 		<![CDATA[
