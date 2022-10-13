@@ -2,11 +2,11 @@ package com.javaex.vo;
 
 public class UserVo {
 
-	private int userNo; //사용자 번호
-	private String name; //사용자 이름
-	private String id; //사용자 아이디
-	private String password; //사용자 비밀번호
-	private String gender; //사용자 성별
+	private int userNo; //회원 번호
+	private String name; //회원 이름
+	private String id; //회원 아이디
+	private String password; //회원 비밀번호
+	private String gender; //회원 성별
 	
 	
 	public UserVo() {

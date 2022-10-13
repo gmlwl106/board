@@ -49,6 +49,15 @@
 						<form action="./write" method="get">
 							<!-- 작성자 no -->
 							<input type="hidden" name="userNo" value="${authUser.no }">
+							<!-- 카테고리 -->
+							<div class="form-group">
+								<label class="form-text" for="category">카테고리</label>
+								<select>
+									<c:forEach items="${cateList }" var="cateVo">
+					      				<option value="${cateVo.cateNo }">${cateVo.cateName }</option>
+				      				</c:forEach>
+								</select>
+							</div>
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label>
@@ -58,6 +67,12 @@
 							<!-- 내용 -->
 							<div class="form-group">
 								<textarea id="txt-content" name="content" value=""></textarea>
+							</div>
+							
+							<!-- 첨부파일 -->
+							<div class="form-group">
+								<label class="form-text" for="file">첨부파일</label>
+								<input type="file" id="input-file" multiple="multiple">
 							</div>
 							
 							<a id="btn_cancel" href="./list">취소</a>

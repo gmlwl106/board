@@ -7,6 +7,10 @@
     border-collapse: collapse; 
 }
 
+#board textarea {
+	resize: none;
+}
+
 /* 폼요소 그룹 */
 #board .form-group {
     padding: 5px 0px 5px 0px;
@@ -82,16 +86,21 @@
 /* 폼태그 라벨(제목) */
 #board #writeForm .form-group .form-text {
     display: inline-block;  /* 인라인 요소 가로폭을 주려고 */
-    width: 30px;
+    width: 50px;
     text-align: left;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 /* 폼태그(제목) */
 #board #writeForm .form-group #txt-title {
-    width: 761px;
+    width: 750px;
 }
 
+/* 폼태크(카테고리) */
+#board #writeForm .form-group select {
+	height: 30px;
+	width: 80px;
+}
 
 /* 폼태그(내용) */
 #board #writeForm .form-group #txt-content {

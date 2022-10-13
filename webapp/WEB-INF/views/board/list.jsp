@@ -59,7 +59,7 @@
 							<thead>
 								<tr>
 									<th>글번호</th>
-									<th>글종류</th>
+									<th>카테고리</th>
 									<th>제목</th>
 									<th>첨부파일</th>
 									<th>작성자</th>
