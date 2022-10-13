@@ -106,6 +106,7 @@
 #board #writeForm .form-group #txt-content {
     width: 816px;
     height: 400px;
+    padding: 10px;
 }
 
 /* 등록 버튼 */
@@ -241,7 +242,7 @@
 	margin: 10px 0px 10px 0px;
 	padding: 10px 10px 10px 10px;
     border-top: 1px solid #A6A6A6;
-    /* border-bottom: 1px solid #A6A6A6; */
+    min-height: 200px;
 }
 
 

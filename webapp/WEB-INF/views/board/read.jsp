@@ -31,7 +31,8 @@
 						<ul>
 							<li>홈</li>
 							<li>게시판</li>
-							<li class="last">일반게시판</li>
+							<li>일반게시판</li>
+							<li class="last">${pMap.post.CATENAME }</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
@@ -44,25 +45,25 @@
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
-								<span class="form-value">박깜이</span>
+								<span class="form-value">${pMap.post.NAME }</span>
 							</div>
 							
 							<!-- 조회수 -->
 							<div class="form-group">
 								<span class="form-text">조회수</span>
-								<span class="form-value">1</span>
+								<span class="form-value">${pMap.post.HIT }</span>
 							</div>
 							
 							<!-- 작성일 -->
 							<div class="form-group">
 								<span class="form-text">작성일</span>
-								<span class="form-value">2022-10-12</span>
+								<span class="form-value">${pMap.post.REGDATE }</span>
 							</div>
 							
 							<!-- 제목 -->
 							<div class="form-group">
 								<span class="form-text">제 목</span>
-								<span class="form-value">제목입니다</span>
+								<span class="form-value">${pMap.post.TITLE }</span>
 							</div>
 							
 							<!-- 첨부파일 -->
@@ -73,7 +74,7 @@
 						
 							<!-- 내용 -->
 							<div id="txt-content">
-								<span class="form-value" >글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.글입니다.</span>
+								<span class="form-value" >${pMap.post.CONTENT }</span>
 							</div>
 							
 							<a id="btn_modify" href="">수정</a>

@@ -1,11 +1,13 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,9 +31,11 @@ public class BoardController {
 	
 	
 	//게시글 폼
-	@RequestMapping(value="read", method= {RequestMethod.GET, RequestMethod.POST})
-	public String readForm() {
-		
+	@RequestMapping(value="read/{no}", method= {RequestMethod.GET, RequestMethod.POST})
+	public String readForm(Model model, @PathVariable int no) {
+		//게시글 가져오기
+		Map<String, Object> pMap = boardService.getPost(no);
+		model.addAttribute("pMap", pMap);
 		return "board/read";
 	}
 	
@@ -45,7 +49,7 @@ public class BoardController {
 		return "board/writeForm";
 	}
 	
-	//글 등록
+	//게시글 등록
 	@RequestMapping(value="write", method = {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PostVo postVo) {
 		String result = boardService.write(postVo);

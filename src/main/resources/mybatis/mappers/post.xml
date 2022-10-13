@@ -3,7 +3,7 @@
 
 <mapper namespace="post">
 
-	<!-- 글 등록 -->
+	<!-- 게시글 등록 -->
 	<insert id="insert" parameterType="postVo">
 		<![CDATA[
 			insert into post
@@ -16,4 +16,30 @@
 			        , #{content})
 		]]>
 	</insert>
+	
+	<!-- 게시글 가져오기 -->
+	<select id="getPost" parameterType="int" resultType="map">
+		<![CDATA[
+			select post_no postNo
+			        ,category_name cateName
+			        ,title
+			        ,name
+			        ,to_char(p.reg_date, 'yyyy-mm-dd hh24:mm') regDate
+			        ,hit
+			        ,content
+			from post p, category c, users u
+			where p.category_no = c.category_no
+			and p.user_no = u.user_no
+			and post_no = #{no}
+		]]>
+	</select>
+	
+	<!-- 조회수 올리기 -->
+	<update id="updateHit" parameterType="int">
+		<![CDATA[
+			update post
+			set hit = hit + 1
+			where post_no = #{no}
+		]]>	
+	</update>
 </mapper>
