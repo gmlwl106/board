@@ -64,4 +64,22 @@ public class BoardController {
 		}
 	}
 	
+	
+	//게시글 수정 폼
+	@RequestMapping(value="modifyForm/{no}", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm(Model model, @PathVariable int no) {
+		//게시글 가져오기
+		Map<String, Object> pMap = boardService.modifyForm(no);
+		model.addAttribute("pMap", pMap);
+		return "board/modifyForm";
+	}
+	
+	
+	//게시글 수정
+	@RequestMapping(value="modify", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify(@ModelAttribute PostVo postVo) {
+		boardService.modify(postVo);
+		return "redirect:/board/read/"+postVo.getPostNo();
+	}
+	
 }

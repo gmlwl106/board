@@ -39,4 +39,10 @@ public class PostDao {
 	public List<Map<String, Object>> getPostList() {
 		return sqlSession.selectList("post.getPostList");
 	}
+
+
+	//게시글 수정
+	public int updatePost(PostVo postVo) {
+		return sqlSession.update("post.updatePost", postVo);
+	}
 }

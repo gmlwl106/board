@@ -20,11 +20,13 @@ public class BoardService {
 	@Autowired
 	private PostDao postDao;
 
+	
 	//카테고리 가져오기
 	public List<CategoryVo> getCategory() {
 		return cateDao.getCategory();
 	}
 
+	
 	//게시글 등록
 	public String write(PostVo postVo) {
 		postVo.setContent(postVo.getContent().replace("\r\n", "<br>")); //줄바꿈
@@ -37,6 +39,7 @@ public class BoardService {
 		}
 	}
 
+	
 	//게시글 가져오기
 	public Map<String, Object> getPost(int no) {
 		//조회수 올리기
@@ -53,9 +56,25 @@ public class BoardService {
 		return map;
 	}
 
+	
 	//게시글 리스트 가져오기
 	public List<Map<String, Object>> getPostList() {
 		return postDao.getPostList();
+	}
+
+
+	//게시글 수정 폼
+	public Map<String, Object> modifyForm(int no) {
+		Map<String, Object> post = postDao.getPost(no);
+		post.replace("CONTENT", post.get("CONTENT").toString().replace("<br>", "\r\n")); //줄바꿈
+		return post;
+	}
+
+
+	//게시글 수정
+	public int modify(PostVo postVo) {
+		postVo.setContent(postVo.getContent().replace("\r\n", "<br>"));
+		return postDao.updatePost(postVo);
 	}
 
 	

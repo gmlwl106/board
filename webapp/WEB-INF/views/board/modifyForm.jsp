@@ -37,7 +37,8 @@
 						<ul>
 							<li>홈</li>
 							<li>게시판</li>
-							<li class="last">일반게시판</li>
+							<li>일반게시판</li>
+							<li class="last">${pMap.post.CATENAME }</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
@@ -48,37 +49,43 @@
 					<div id="modifyForm">
 						<form action="${pageContext.request.contextPath }/board/modify" method="get">
 							<!-- 글번호 -->
-							<input type="hidden" name="no" value="${boardVo.no }">
+							<input type="hidden" name="postNo" value="${pMap.POSTNO }">
 							
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
-								<span class="form-value">${boardVo.name }</span>
+								<span class="form-value">${pMap.NAME }</span>
 							</div>
 							
 							<!-- 조회수 -->
 							<div class="form-group">
 								<span class="form-text">조회수</span>
-								<span class="form-value">${boardVo.hit }</span>
+								<span class="form-value">${pMap.HIT }</span>
 							</div>
 							
 							<!-- 작성일 -->
 							<div class="form-group">
 								<span class="form-text">작성일</span>
-								<span class="form-value">${boardVo.regDate }</span>
+								<span class="form-value">${pMap.REGDATE }</span>
+							</div>
+							
+							<!-- 첨부파일 -->
+							<div class="form-group">
+								<span class="form-text">첨부파일</span>
+								<span class="form-value">다운로드</span>
 							</div>
 							
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label>
-								<input type="text" id="txt-title" name="title" value="${boardVo.title }">
+								<input type="text" id="txt-title" name="title" value="${pMap.TITLE }">
 							</div>
 						
 							
 						
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content" name="content" value="">${boardVo.content }</textarea>
+								<textarea id="txt-content" name="content" value="">${pMap.CONTENT }</textarea>
 							</div>
 							
 							<a id="btn_cancel" href="${pageContext.request.contextPath }/board/list">취소</a>

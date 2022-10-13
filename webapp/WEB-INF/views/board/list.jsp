@@ -72,7 +72,7 @@
 									<tr>
 										<td>${postVo.POSTNO }</td>
 										<td>${postVo.CATENAME }</td>
-										<td>${postVo.TITLE }</td>
+										<td class="text-left"><a href="./read/${postVo.POSTNO }">${postVo.TITLE }</a></td>
 										<td>0</td>
 										<td>${postVo.NAME }</td>
 										<td>${postVo.REGDATE }</td>

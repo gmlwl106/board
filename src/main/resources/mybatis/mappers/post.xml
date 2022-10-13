@@ -59,4 +59,14 @@
 			where post_no = #{no}
 		]]>	
 	</update>
+	
+	<!-- 게시글 수정 -->
+	<update id="updatePost" parameterType="postVo">
+		<![CDATA[
+			update post
+			set title = #{title}
+				,content = #{content}
+			where post_no = #{postNo}
+		]]>
+	</update>
 </mapper>

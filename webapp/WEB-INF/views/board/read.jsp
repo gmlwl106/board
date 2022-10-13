@@ -77,7 +77,7 @@
 								<span class="form-value" >${pMap.post.CONTENT }</span>
 							</div>
 							
-							<a id="btn_modify" href="">수정</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${pMap.post.POSTNO}">수정</a>
 							<a id="btn_list" href="">목록</a>
 							
 						</form>
