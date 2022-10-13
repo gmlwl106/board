@@ -22,7 +22,7 @@
 	<!-- 로그인(회원 확인) -->
 	<select id="selectID" parameterType="userVo" resultType="userVo">
 		<![CDATA[
-			select user_no
+			select user_no userNo
 			        , name
 			from users
 			where id = #{id}

@@ -3,4 +3,17 @@
 
 <mapper namespace="post">
 
+	<!-- 글 등록 -->
+	<insert id="insert" parameterType="postVo">
+		<![CDATA[
+			insert into post
+			values (seq_post_no.nextval
+			        , #{cateNo}
+			        , #{title}
+			        , #{userNo}
+			        , sysdate
+			        , 0
+			        , #{content})
+		]]>
+	</insert>
 </mapper>

@@ -48,11 +48,11 @@
 					<div id="writeForm">
 						<form action="./write" method="get">
 							<!-- 작성자 no -->
-							<input type="hidden" name="userNo" value="${authUser.no }">
+							<input type="hidden" name="userNo" value="${authUser.userNo }">
 							<!-- 카테고리 -->
 							<div class="form-group">
 								<label class="form-text" for="category">카테고리</label>
-								<select>
+								<select name="cateNo">
 									<c:forEach items="${cateList }" var="cateVo">
 					      				<option value="${cateVo.cateNo }">${cateVo.cateName }</option>
 				      				</c:forEach>
