@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.CategoryVo;
@@ -80,6 +82,14 @@ public class BoardController {
 	public String modify(@ModelAttribute PostVo postVo) {
 		boardService.modify(postVo);
 		return "redirect:/board/read/"+postVo.getPostNo();
+	}
+	
+	
+	//게시글 삭제
+	@ResponseBody
+	@RequestMapping(value="delete", method = {RequestMethod.GET, RequestMethod.POST})
+	public String delete(@RequestParam(value="postNo") int no) {
+		return boardService.delete(no);
 	}
 	
 }

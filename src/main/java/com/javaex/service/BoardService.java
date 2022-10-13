@@ -77,6 +77,18 @@ public class BoardService {
 		return postDao.updatePost(postVo);
 	}
 
+
+	//게시글 삭제
+	public String delete(int no) {
+		int cnt = postDao.deletePost(no);
+		
+		if(cnt > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
 	
 
 }

@@ -7,8 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- css -->
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
+<!-- js -->
+<script type="text/javascript">
+	window.contextPath = '${pageContext.request.contextPath}';
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/read.js"></script>
 
 </head>
 
@@ -42,6 +49,9 @@
 				<div id="board">
 					<div id="read">
 						<form action="#" method="get">
+							<!-- 글번호 -->
+							<input type="hidden" id="postNo" value="${pMap.post.POSTNO }">
+						
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -77,7 +87,9 @@
 								<span class="form-value" >${pMap.post.CONTENT }</span>
 							</div>
 							
+							
 							<a id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${pMap.post.POSTNO}">수정</a>
+							<a id="btn_delete" href="">삭제</a>
 							<a id="btn_list" href="">목록</a>
 							
 						</form>

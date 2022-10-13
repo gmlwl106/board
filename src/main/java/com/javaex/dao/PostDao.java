@@ -45,4 +45,10 @@ public class PostDao {
 	public int updatePost(PostVo postVo) {
 		return sqlSession.update("post.updatePost", postVo);
 	}
+
+
+	//게시글 삭제
+	public int deletePost(int no) {
+		return sqlSession.delete("post.delete", no);
+	}
 }

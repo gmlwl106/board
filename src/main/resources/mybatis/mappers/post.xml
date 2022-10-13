@@ -69,4 +69,12 @@
 			where post_no = #{postNo}
 		]]>
 	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete from post
+			where post_no = #{no}
+		]]>
+	</delete>
 </mapper>
