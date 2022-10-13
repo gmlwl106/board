@@ -20,7 +20,7 @@
 					<ul>
 						<li>${authUser.name } 님 안녕하세요 คʕ•ﻌ•ʔค</li>
 						<li><a href="${pageContext.request.contextPath }/user/logout" class="btn_s">로그아웃</a></li>
-						<li><a href="${pageContext.request.contextPath }/user/modifyForm" class="btn_s">회원정보수정</a></li>
+						<li><a href="" class="btn_s">회원정보수정</a></li>
 					</ul>
 				</c:when>
 			</c:choose>

@@ -13,8 +13,18 @@ public class UserDao {
 	private SqlSession sqlSession;
 
 	//id 중복체크
-	public int selectId(UserVo userVo) {
-		System.out.println(userVo);
-		return sqlSession.selectOne("users.selectId", userVo);
+	public int idCheck(UserVo userVo) {
+		return sqlSession.selectOne("users.idCheck", userVo);
+	}
+
+	//회원 추가
+	public int insertUser(UserVo userVo) {
+		System.out.println("UserDao->"+userVo);
+		return sqlSession.insert("users.insert", userVo);
+	}
+	
+	//로그인(회원 확인)
+	public UserVo selectID(UserVo userVo) {
+		return sqlSession.selectOne("users.selectID", userVo);
 	}
 }

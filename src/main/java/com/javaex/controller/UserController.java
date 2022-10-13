@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,7 +37,13 @@ public class UserController {
 	@RequestMapping(value="join", method= {RequestMethod.GET, RequestMethod.POST})
 	public String join(@ModelAttribute UserVo userVo) {
 		userService.join(userVo);
-		return "";
+		return "redirect:/joinOk";
+	}
+	
+	//회원가입 성공 폼
+	@RequestMapping(value="joinOk", method = {RequestMethod.GET, RequestMethod.POST})
+	public String joinOk() {
+		return "user/joinOk";
 	}
 	
 	//로그인 폼
@@ -43,5 +51,31 @@ public class UserController {
 	public String loginForm() {
 		
 		return "user/loginForm";
+	}
+	
+	//로그인
+	@RequestMapping(value="login", method = {RequestMethod.GET, RequestMethod.POST})
+	public String login(HttpSession session, @ModelAttribute UserVo userVo) {
+		UserVo authUser = userService.login(userVo);
+		
+		if(authUser != null) {
+			System.out.println("<<로그인 성공>>");
+			
+			//세션에 저장
+			session.setAttribute("authUser", authUser);
+			return "redirect:/";
+		}
+		
+		System.out.println("<<로그인 실패>>");
+		return "redirect:/user/loginForm?result=fail";
+	}
+	
+	//로그아웃
+	@RequestMapping(value="logout", method = {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		//세션 삭제
+		session.removeAttribute("authUser");
+		session.invalidate();
+		return "redirect:/";
 	}
 }

@@ -14,7 +14,7 @@ public class UserService {
 
 	//아이디 중복체크
 	public String idCheck(UserVo userVo) {
-		int cnt = userDao.selectId(userVo);
+		int cnt = userDao.idCheck(userVo);
 		
 		if(cnt > 0) {
 			return "fail";
@@ -24,7 +24,19 @@ public class UserService {
 	}
 
 	//회원 등록
-	public void join(UserVo userVo) {
+	public String join(UserVo userVo) {
+		int cnt = userDao.insertUser(userVo);
+		
+		if(cnt > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
+	//로그인
+	public UserVo login(UserVo userVo) {
+		return userDao.selectID(userVo);
 	}
 
 }

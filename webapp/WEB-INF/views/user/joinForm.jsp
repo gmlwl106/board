@@ -64,7 +64,7 @@
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
+								<input type="password" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
 							</div>
 	
 							<!-- 이름 -->
@@ -159,30 +159,30 @@
 		var id = $("#input-uid").val();
 		console.log(id);
 		
-		var userVo = {
-				id : id
-		};
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath }/user/idCheck",
-			type : "post",
-			data : userVo,
-			success : function(result){
-				console.log(result);
-				if(id != null || id != "") {
+		if(id != "" && id != null && id != " ") {
+			var userVo = {
+					id : id
+			};
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath }/user/idCheck",
+				type : "post",
+				data : userVo,
+				success : function(result){
+					console.log(result);
 					if(result == "success") {
 						$("#idCkResult").html("사용할 수 있는 아이디입니다.");
 						idCk = 1;
 					} else {
 						$("#idCkResult").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
 					};
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
 				}
-
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+			});
+		}
+		
 	});
 	
 </script>
