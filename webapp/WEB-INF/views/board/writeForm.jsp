@@ -7,9 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- css -->
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
-
+<!-- js -->
+<script type="text/javascript">
+	window.contextPath = '${pageContext.request.contextPath}';
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/writeForm.js"></script>
 </head>
 
 
@@ -72,7 +78,7 @@
 							<!-- 첨부파일 -->
 							<div class="form-group">
 								<label class="form-text" for="file">첨부파일</label>
-								<input type="file" id="input-file" multiple="multiple">
+								<input type="file" id="input-file" multiple>
 							</div>
 							
 							<a id="btn_cancel" href="./list">취소</a>

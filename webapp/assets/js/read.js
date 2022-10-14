@@ -11,7 +11,6 @@ $(document).ready(function() {
 		if(result == true) {
 			
 			var postNo = $("#postNo").val();
-			console.log(postNo);
 			
 			$.ajax({
 				//보낼때
