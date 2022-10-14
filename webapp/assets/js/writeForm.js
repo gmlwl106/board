@@ -11,6 +11,9 @@
 	$('input[type="file"]').change(function() {
 		console.log("파일추가");
 		
+		//배열 초기화
+		fileList = [];
+		
 		var $this = $(this);
 		
 		var maxFileCnt = 3; //첨부파일 최대 개수
@@ -22,18 +25,25 @@
 			alert("첨부파일 최대 개수는 " + maxFileCnt + "개까지 첨부 가능합니다.");
 		}
 		
-		for (var i = 0; i < curFileCnt; i++) {
+		//파일 이름
+		var fileNames = [];
+		
+		for (var i = 0; i < Math.min(curFileCnt, maxFileCnt); i++) {
 			
 			var file = $this[0].files[i];
 			//첨부파일 검증
 			if(validation(file)) {
 				//파일 배열에 담기
 				fileList.push(file);
+				fileNames.push(file.name);
+				console.log(fileList);
+				console.log(fileNames);
 			} else {
 				continue;
 			}
-			
 		}
+		
+		$('.upload-name').val(fileNames);
 	});
 });
 
@@ -42,7 +52,10 @@ function validation(obj) {
 	//파일 형식
 	const fileTypes = ['application/pdf', 
 	'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 
-	'application/haansofthwp', 'application/x-hwp'];
+	'application/haansofthwp', 'application/x-hwp',
+	'text/plain',
+	'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+	'application/x-zip-compressed'];
 	
 	if (obj.name.lastIndexOf('.') == -1) {
         alert("확장자가 없는 파일은 제외되었습니다.");

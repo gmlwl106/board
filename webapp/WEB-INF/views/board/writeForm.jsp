@@ -77,8 +77,12 @@
 							
 							<!-- 첨부파일 -->
 							<div class="form-group">
-								<label class="form-text" for="file">첨부파일</label>
-								<input type="file" id="input-file" multiple>
+								<label class="form-text">첨부파일</label>
+								<div class="filebox">
+								    <input type="text" class="upload-name" value="첨부파일" placeholder="첨부파일" readonly="readonly">
+								    <label for="file">파일찾기</label> 
+								    <input type="file" id="file" multiple>
+								</div>
 							</div>
 							
 							<a id="btn_cancel" href="./list">취소</a>

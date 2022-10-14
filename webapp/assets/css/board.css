@@ -134,6 +134,32 @@
 	cursor: pointer;
 }
 
+/* 첨부파일 */
+.filebox {
+	display: inline-block;
+}
+.filebox .upload-name {
+    display: inline-block;
+    height: 15px;
+    width: 400px;
+    padding: 5px 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    color: #333333;
+}
+.filebox label {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 15px;
+    margin-left: 10px;
+}
+.filebox input[type="file"] {
+	display: none;
+}
 
 
 /****************************************************************/
