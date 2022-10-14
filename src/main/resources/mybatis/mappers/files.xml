@@ -14,11 +14,19 @@
 	<!-- 파일 가져오기 -->
 	<select id="getFile" parameterType="int" resultType="fileVo">
 		<![CDATA[
-			select save_name saveName
+			select file_no fileNo
+					,save_name saveName
 			        ,file_path filePath
 			from files
 			where post_no = #{no}
 			order by file_no
+		]]>
+	</select>
+	
+	<!-- 파일 경로 가져오기 -->
+	<select id="getFilePath" parameterType="int" resultType="String">
+		<![CDATA[
+		
 		]]>
 	</select>
 </mapper>

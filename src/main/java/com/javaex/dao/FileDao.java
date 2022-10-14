@@ -23,4 +23,9 @@ public class FileDao {
 	public List<FileVo> getFile(int no) {
 		return sqlSession.selectList("files.getFile", no);
 	}
+
+	//파일 경로 가져오기
+	public String getFilePath(int no) {
+		return sqlSession.selectOne("files.getFilePath", no);
+	}
 }

@@ -32,4 +32,25 @@ $(document).ready(function() {
 		}
 	});
 	
+	/*첨부파일 이름 클릭했을때*/
+	$('.files').on("click", function() {
+		var $this = $(this);
+		var path = $this.attr("data-path");
+		console.log(path);
+		
+		$.ajax({
+			//보낼때
+			url : contextPath+"/download",
+			type : "post",
+			data : {path},
+	
+			success : function(result){
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+	
 });

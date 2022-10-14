@@ -257,6 +257,12 @@
     font-weight: bold;
 }
 
+/* 첨부파일 */
+#board #read .form-group .files {
+	cursor: pointer;
+	font-weight: bold;
+}
+
 
 /* 폼태그(제목) */
 #board #modifyForm .form-group #txt-title {

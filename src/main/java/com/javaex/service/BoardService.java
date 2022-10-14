@@ -59,7 +59,7 @@ public class BoardService {
 				String filePath = "C:\\workspace\\ean_board\\webapp\\assets\\files\\"+saveName;
 				
 				//DB 저장
-				FileVo fileVo = new FileVo(postNo, saveName, "/files/"+saveName);
+				FileVo fileVo = new FileVo(postNo, saveName, filePath);
 				int count = fileDao.insertFile(fileVo);
 				
 				if(count > 0) {

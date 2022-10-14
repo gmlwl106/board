@@ -86,11 +86,13 @@
 									
 									<c:otherwise>
 										<c:forEach items="${pMap.fileList }" var="fileVo">
-											<a href="">${fileVo.saveName }</a>
+											<a href="${pageContext.request.contextPath }/download/${fileVo.fileNo}">다운로드ㅇㅅㅇ</a>
+											<span class="files form-value" data-path="${fileVo.filePath }">${fileVo.saveName }</span>
 										</c:forEach>
 									</c:otherwise>
+									
 								</c:choose>
-
+								
 							</div>
 						
 							<!-- 내용 -->
