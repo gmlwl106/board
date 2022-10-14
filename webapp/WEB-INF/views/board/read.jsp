@@ -79,7 +79,18 @@
 							<!-- 첨부파일 -->
 							<div class="form-group">
 								<span class="form-text">첨부파일</span>
-								<span class="form-value">다운로드</span>
+								<c:choose>
+									<c:when test="${empty pMap.fileList }">
+										<span class="form-value">파일없음</span>
+									</c:when>
+									
+									<c:otherwise>
+										<c:forEach items="${pMap.fileList }" var="fileVo">
+											<a href="">${fileVo.saveName }</a>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+
 							</div>
 						
 							<!-- 내용 -->

@@ -3,6 +3,7 @@
 
 <mapper namespace="files">
 
+	<!-- 파일 추가 -->
 	<insert id="insert" parameterType="fileVo">
 		<![CDATA[
 			insert into files
@@ -10,4 +11,14 @@
 		]]>
 	</insert>
 
+	<!-- 파일 가져오기 -->
+	<select id="getFile" parameterType="int" resultType="fileVo">
+		<![CDATA[
+			select save_name saveName
+			        ,file_path filePath
+			from files
+			where post_no = #{no}
+			order by file_no
+		]]>
+	</select>
 </mapper>

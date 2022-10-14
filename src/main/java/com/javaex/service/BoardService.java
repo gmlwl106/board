@@ -99,10 +99,12 @@ public class BoardService {
 		
 		//게시글 상세내용 가져오기
 		Map<String, Object> post = postDao.getPost(no);
+		List<FileVo> fileList = fileDao.getFile(no);
 		
 		//map에 담기
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("post", post);
+		map.put("fileList", fileList);
 		//댓글
 		
 		return map;

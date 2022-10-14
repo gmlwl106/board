@@ -1,5 +1,7 @@
 package com.javaex.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,8 +14,13 @@ public class FileDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	//파일 저장
+	//파일 추가
 	public int insertFile(FileVo fileVo) {
 		return sqlSession.insert("files.insert", fileVo);
+	}
+
+	//파일 가져오기
+	public List<FileVo> getFile(int no) {
+		return sqlSession.selectList("files.getFile", no);
 	}
 }
