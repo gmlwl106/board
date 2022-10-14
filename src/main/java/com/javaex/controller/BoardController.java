@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.CategoryVo;
@@ -55,15 +57,13 @@ public class BoardController {
 	
 	
 	//게시글 등록
+	@ResponseBody
 	@RequestMapping(value="write", method = {RequestMethod.GET, RequestMethod.POST})
-	public String write(@ModelAttribute PostVo postVo) {
-		String result = boardService.write(postVo);
-		
-		if(result == "success") {
-			return "redirect:/board/list";
-		} else {
-			return "redirect:/board/write?result=fail";
-		}
+	public String write(@ModelAttribute(value="postVo") PostVo postVo,
+			@RequestPart(value = "file", required = false) List<MultipartFile> fileList) {
+		String result = boardService.write(postVo, fileList);
+		System.out.println(result);
+		return result;
 	}
 	
 	

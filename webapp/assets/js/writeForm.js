@@ -5,9 +5,10 @@
  $(document).ready(function() {
 	console.log("어쩔티비");
 	
+	//파일 리스트
 	var fileList = [];
 	
-	/*파일 추가했을때*/
+	/***********************파일 추가했을때***********************/
 	$('input[type="file"]').change(function() {
 		console.log("파일추가");
 		
@@ -35,15 +36,63 @@
 			if(validation(file)) {
 				//파일 배열에 담기
 				fileList.push(file);
-				fileNames.push(file.name);
+				fileNames.push(" "+file.name);
 				console.log(fileList);
-				console.log(fileNames);
 			} else {
 				continue;
 			}
 		}
 		
+		//파일 이름 출력
 		$('.upload-name').val(fileNames);
+	});
+	
+	
+	
+	
+	/***********************등록 버튼 클릭했을때***********************/
+	$('#btn_add').on("click", function() {
+		
+		//데이터 가져오기
+		var userNo = $('input[name="userNo"]').val();
+		var cateNo = $('select[name="cateNo"]').val();
+		var title = $('#txt-title').val();
+		var content = $('#txt-content').val();
+		
+		//formData에 값 추가
+		var formData = new FormData();
+		formData.append('userNo', userNo);
+		formData.append('cateNo', cateNo);
+		formData.append('title', title);
+		formData.append('content', content);
+		if(fileList.length > 0) {
+			for(var i=0; i<fileList.length; i++) {
+				formData.append('file', fileList[i]);
+			}
+		}
+		
+		//ajax로 데이터 전송
+		$.ajax({
+			//보낼때
+			url : contextPath+"/board/write",
+			type : "post",
+			data : formData,
+			processData: false,
+			contentType: false,
+			enctype : 'multipart/form-data',
+			
+			success : function(result){
+				console.log(result);
+				if(result === 'success') {
+					location.href = contextPath+"/board/list";
+				} else {
+					location.href = contextPath+"/board/writeForm?result=fail";
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 	});
 });
 

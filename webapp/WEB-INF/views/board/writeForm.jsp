@@ -52,7 +52,7 @@
 	
 				<div id="board">
 					<div id="writeForm">
-						<form action="./write" method="get">
+						<!-- <form action="./write" method="get"> -->
 							<!-- 작성자 no -->
 							<input type="hidden" name="userNo" value="${authUser.userNo }">
 							<!-- 카테고리 -->
@@ -86,9 +86,9 @@
 							</div>
 							
 							<a id="btn_cancel" href="./list">취소</a>
-							<button id="btn_add" type="submit" >등록</button>
+							<button id="btn_add" type="button" >등록</button>
 							
-						</form>
+						<!-- </form> -->
 						<!-- //form -->
 					</div>
 					<!-- //writeForm -->

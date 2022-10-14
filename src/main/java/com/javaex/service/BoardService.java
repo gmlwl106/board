@@ -1,15 +1,23 @@
 package com.javaex.service;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.CategoryDao;
+import com.javaex.dao.FileDao;
 import com.javaex.dao.PostDao;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.FileVo;
 import com.javaex.vo.PostVo;
 
 @Service
@@ -19,6 +27,8 @@ public class BoardService {
 	private CategoryDao cateDao;
 	@Autowired
 	private PostDao postDao;
+	@Autowired
+	private FileDao fileDao;
 
 	
 	//카테고리 가져오기
@@ -28,12 +38,54 @@ public class BoardService {
 
 	
 	//게시글 등록
-	public String write(PostVo postVo) {
+	public String write(PostVo postVo, List<MultipartFile> fileList) {
 		postVo.setContent(postVo.getContent().replace("\r\n", "<br>")); //줄바꿈
+		//게시글 등록
 		int cnt = postDao.insertPost(postVo);
 		
-		if(cnt > 0) {
+		//파일 등록
+		if(cnt > 0 && fileList.size() > 0) {
+			
+			int postNo = postVo.getPostNo(); //게시글 번호
+
+			for(MultipartFile file : fileList) {
+				//오리지날 파일명
+				String orgName = file.getOriginalFilename();
+				//확장자
+				String exName = orgName.substring(orgName.lastIndexOf("."));
+				//현재시간+랜던UUID+확장자
+				String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+				//파일경로(디렉토리+저장파일명)
+				String filePath = "C:\\workspace\\ean_board\\webapp\\assets\\files\\"+saveName;
+				
+				//DB 저장
+				FileVo fileVo = new FileVo(postNo, saveName, "/files/"+saveName);
+				int count = fileDao.insertFile(fileVo);
+				
+				if(count > 0) {
+					//파일 저장
+					try {
+						
+						byte[] fileData = file.getBytes();
+						OutputStream os = new FileOutputStream(filePath);
+						BufferedOutputStream bos = new BufferedOutputStream(os);
+						
+						bos.write(fileData);
+						bos.close();
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						return "false";
+					}
+				} else {
+					return "fail";
+				}
+			}
+			
 			return "success";
+			
+			
 		} else {
 			return "fail";
 		}
