@@ -86,8 +86,7 @@
 									
 									<c:otherwise>
 										<c:forEach items="${pMap.fileList }" var="fileVo">
-											<a href="${pageContext.request.contextPath }/download/${fileVo.fileNo}">다운로드ㅇㅅㅇ</a>
-											<span class="files form-value" data-path="${fileVo.filePath }">${fileVo.saveName }</span>
+											<a href="${pageContext.request.contextPath }/download/${fileVo.fileNo}">${fileVo.saveName }</a>
 										</c:forEach>
 									</c:otherwise>
 									

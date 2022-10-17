@@ -26,7 +26,9 @@
 	<!-- 파일 경로 가져오기 -->
 	<select id="getFilePath" parameterType="int" resultType="String">
 		<![CDATA[
-		
+			select file_path
+			from files
+			where file_no = #{no}
 		]]>
 	</select>
 </mapper>

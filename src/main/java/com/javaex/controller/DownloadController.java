@@ -20,12 +20,13 @@ public class DownloadController {
 	@Autowired
 	private DownloadService downService;
 	
+	//파일 다운로드
 	@RequestMapping(value="download/{no}", method= {RequestMethod.GET, RequestMethod.POST})
 	public void download(HttpServletResponse response,
 				@PathVariable(value="no") int no) throws Exception {
-		System.out.println("DownloadController");
-		System.out.println(no);
+		System.out.println("DownloadController->download("+no+")");
 		
+		//파일 경로 가져오기
 		String path = downService.getFilePath(no);
 		
 		try {
@@ -44,6 +45,8 @@ public class DownloadController {
 		while ((read = fileInputStream.read(buffer)) != -1) { 
 			out.write(buffer, 0, read);
 		}
+		
+		fileInputStream.close();
 		        
 		} catch (Exception e) {
 			throw new Exception("download error");
