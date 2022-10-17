@@ -21,7 +21,7 @@
 	</insert>
 	
 	<!-- 게시글 리스트 가져오기 -->
-	<select id="getPostList" parameterType="int" resultType="map">
+	<select id="getPostList" parameterType="map" resultType="map">
 		<![CDATA[
 			select p.post_no postNo
 			        ,p.category_no cateNo
@@ -38,6 +38,19 @@
 			where p.category_no = c.category_no
 			and p.user_no = u.user_no
 			and p.post_no = f.post_no(+)
+		]]>
+		<choose>
+			<when test='kwdOpt.equals("title")'>
+				and title like '%'||#{keyword}||'%'
+			</when>
+			<when test='kwdOpt.equals("content")'>
+				and content like '%'||#{keyword}||'%'
+			</when>
+			<when test='kwdOpt.equals("name")'>
+				and name like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		<![CDATA[
 			order by p.reg_date desc
 		]]>
 	</select>

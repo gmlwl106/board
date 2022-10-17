@@ -42,6 +42,31 @@
 					<div id="list">
 						<form action="./list" method="get">
 							<div class="form-group text-right">
+								<select name="kwdOpt">
+									<c:choose>
+										<c:when test="${param.kwdOpt eq 'title' }">
+											<option value="title" selected="selected">제목</option>
+											<option value="content">내용</option>
+											<option value="name">글쓴이</option>
+										</c:when>
+										<c:when test="${param.kwdOpt eq 'content' }">
+											<option value="title">제목</option>
+											<option value="content" selected="selected">내용</option>
+											<option value="name">글쓴이</option>
+										</c:when>
+										<c:when test="${param.kwdOpt eq 'name' }">
+											<option value="title">제목</option>
+											<option value="content">내용</option>
+											<option value="name" selected="selected">글쓴이</option>
+										</c:when>
+										<c:otherwise>
+											<option value="title" selected="selected">제목</option>
+											<option value="content">내용</option>
+											<option value="name">글쓴이</option>
+										</c:otherwise>
+									</c:choose>
+									
+								</select>
 								<input type="text" name="keyword" value="${param.keyword }">
 								<button type="submit" id=btn_search>검색</button>
 							</div>

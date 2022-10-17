@@ -36,8 +36,8 @@ public class PostDao {
 
 
 	//게시글 리스트 가져오기
-	public List<Map<String, Object>> getPostList() {
-		return sqlSession.selectList("post.getPostList");
+	public List<Map<String, Object>> getPostList(Map<String, String> map) {
+		return sqlSession.selectList("post.getPostList", map);
 	}
 
 

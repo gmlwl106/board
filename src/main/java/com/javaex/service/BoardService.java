@@ -112,9 +112,12 @@ public class BoardService {
 	}
 
 	
-	//게시글 리스트 가져오기
-	public List<Map<String, Object>> getPostList() {
-		return postDao.getPostList();
+	//게시글 리스트 가져오기 (+검색)
+	public List<Map<String, Object>> getPostList(String kwdOpt, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("kwdOpt", kwdOpt);
+		map.put("keyword", keyword);
+		return postDao.getPostList(map);
 	}
 
 
