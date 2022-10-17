@@ -41,10 +41,16 @@ public class BoardController {
 	
 	//게시글 폼
 	@RequestMapping(value="read/{no}", method= {RequestMethod.GET, RequestMethod.POST})
-	public String readForm(Model model, @PathVariable int no) {
+	public String readForm(Model model, @PathVariable int no,
+			@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage,
+			@RequestParam(value="kwdOpt", required = false, defaultValue = "") String kwdOpt,
+			@RequestParam(value="keyword", required = false, defaultValue = "") String keyword) {
 		//게시글 가져오기
 		Map<String, Object> pMap = boardService.getPost(no);
 		model.addAttribute("pMap", pMap);
+		model.addAttribute("crtPage", crtPage);
+		model.addAttribute("kwdOpt", kwdOpt);
+		model.addAttribute("keyword", keyword);
 		return "board/read";
 	}
 	

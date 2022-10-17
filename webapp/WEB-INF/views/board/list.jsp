@@ -97,7 +97,7 @@
 									<tr>
 										<td>${postVo.POSTNO }</td>
 										<td>${postVo.CATENAME }</td>
-										<td class="text-left"><a href="./read/${postVo.POSTNO }">${postVo.TITLE }</a></td>
+										<td class="text-left"><a href="./read/${postVo.POSTNO }?crtPage=${param.crtPage }&kwdOpt=${param.kwdOpt}&keyword=${param.keyword}">${postVo.TITLE }</a></td>
 										<td>${postVo.FILECNT }</td>
 										<td>${postVo.NAME }</td>
 										<td>${postVo.REGDATE }</td>

@@ -102,7 +102,7 @@
 							
 							<a id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${pMap.post.POSTNO}">수정</a>
 							<a id="btn_delete" href="">삭제</a>
-							<a id="btn_list" href="">목록</a>
+							<a id="btn_list" href="${pageContext.request.contextPath }/board/list?crtPage=${crtPage }&kwdOpt=${kwdOpt }&keyword=${keyword}">목록</a>
 							
 						</form>
 						<!-- //form -->
