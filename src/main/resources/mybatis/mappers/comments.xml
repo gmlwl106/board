@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="comments">
+
+	<!-- 댓글 등록 -->
+	<insert id="insertCmt" parameterType="cmtVo">
+		<selectKey keyProperty="cmtNo" resultType="int" order="BEFORE">
+			select SEQ_CMT_NO.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into comments
+			values(#{cmtNo}, #{postNo}, #{userNo}, #{content}, sysdate, 1)
+		]]>
+	</insert>
+
+</mapper>

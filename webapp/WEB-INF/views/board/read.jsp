@@ -119,8 +119,11 @@
 							</colgroup>
 							
 							<tr>
-								<td>박깜이</td>
-								<td><input type="text" id="cmtContent"></td>
+								<td>
+									${authUser.name }
+									<input type="hidden" id="userNo" value="${authUser.userNo }">
+								</td>
+								<td><input type="text" id="cmtContent" maxlength="30"></td>
 								<td><button id="cmtBtn">등록</button></td>
 							</tr>
 						</table>
@@ -128,11 +131,16 @@
 						<table id="cmtRead">
 							<colgroup>
 								<col style="width: 10%;">
-								<col style="width: 100%;">
+								<col style="width: 75%;">
+								<col style="width: 15%;">
 							</colgroup>
 							<tr>
 								<td>박깜이</td>
-								<td>답글답글답글답글</td>
+								<td>
+									댓글댓글댓글
+									<button id="reply">답글</button>
+								</td>
+								<td>2022-10-17 16:44</td>
 							</tr>
 						</table>
 					</div>

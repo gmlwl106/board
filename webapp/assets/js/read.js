@@ -4,7 +4,7 @@
  
 $(document).ready(function() {
 	
-	//글 삭제 전 확인
+	/* *****************************글 삭제 전 확인***************************** */
 	$("#btn_delete").on("click", function() {
 		var result = confirm("글을 삭제 하시겠습니까?");
 		
@@ -13,7 +13,6 @@ $(document).ready(function() {
 			var postNo = $("#postNo").val();
 			
 			$.ajax({
-				//보낼때
 				url : contextPath+"/board/delete",
 				type : "post",
 				data : {postNo},
@@ -32,7 +31,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	/*첨부파일 이름 클릭했을때*/
+	/* *****************************첨부파일 이름 클릭했을때***************************** */
 	$('.files').on("click", function() {
 		var $this = $(this);
 		var path = $this.attr("data-path");
@@ -52,5 +51,33 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	/* *****************************댓글 달기***************************** */
+	$('#cmtBtn').on("click", function() {
+		var postNo = $('#postNo').val();
+		var userNo = $('#userNo').val();
+		var content = $('#cmtContent').val();
+		
+		var cmtVo = {
+			postNo : postNo,
+			userNo : userNo,
+			content : content
+		};
+		
+		$.ajax({
+			url : contextPath+"/comment/write",
+			type : "post",
+			data : cmtVo,
+	
+			success : function(result){
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+	
+	
 	
 });

@@ -6,11 +6,13 @@
 		<typeAlias alias="cateVo" type="com.javaex.vo.CategoryVo" />
 		<typeAlias alias="postVo" type="com.javaex.vo.PostVo" />
 		<typeAlias alias="fileVo" type="com.javaex.vo.FileVo" />
+		<typeAlias alias="cmtVo" type="com.javaex.vo.CommentVo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/category.xml" />
 		<mapper resource="mybatis/mappers/post.xml" />
 		<mapper resource="mybatis/mappers/files.xml" />
+		<mapper resource="mybatis/mappers/comments.xml" />
 	</mappers>
 </configuration>
