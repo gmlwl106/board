@@ -43,48 +43,49 @@ public class BoardService {
 		//게시글 등록
 		int cnt = postDao.insertPost(postVo);
 		
-		//파일 등록
-		if(cnt > 0 && fileList.size() > 0) {
-			
-			int postNo = postVo.getPostNo(); //게시글 번호
-
-			for(MultipartFile file : fileList) {
-				//오리지날 파일명
-				String orgName = file.getOriginalFilename();
-				//확장자
-				String exName = orgName.substring(orgName.lastIndexOf("."));
-				//현재시간+랜던UUID+확장자
-				String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-				//파일경로(디렉토리+저장파일명)
-				String filePath = "C:\\workspace\\ean_board\\webapp\\assets\\files\\"+saveName;
+		if(cnt > 0) {
+			//파일 등록
+			if(fileList.size() > 0) {
 				
-				//DB 저장
-				FileVo fileVo = new FileVo(postNo, saveName, filePath);
-				int count = fileDao.insertFile(fileVo);
-				
-				if(count > 0) {
-					//파일 저장
-					try {
-						
-						byte[] fileData = file.getBytes();
-						OutputStream os = new FileOutputStream(filePath);
-						BufferedOutputStream bos = new BufferedOutputStream(os);
-						
-						bos.write(fileData);
-						bos.close();
-						
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						return "false";
+				int postNo = postVo.getPostNo(); //게시글 번호
+	
+				for(MultipartFile file : fileList) {
+					//오리지날 파일명
+					String orgName = file.getOriginalFilename();
+					//확장자
+					String exName = orgName.substring(orgName.lastIndexOf("."));
+					//현재시간+랜던UUID+확장자
+					String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+					//파일경로(디렉토리+저장파일명)
+					String filePath = "C:\\workspace\\ean_board\\webapp\\assets\\files\\"+saveName;
+					
+					//DB 저장
+					FileVo fileVo = new FileVo(postNo, saveName, filePath);
+					int count = fileDao.insertFile(fileVo);
+					
+					if(count > 0) {
+						//파일 저장
+						try {
+							
+							byte[] fileData = file.getBytes();
+							OutputStream os = new FileOutputStream(filePath);
+							BufferedOutputStream bos = new BufferedOutputStream(os);
+							
+							bos.write(fileData);
+							bos.close();
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							return "fail";
+						}
+					} else {
+						return "fail";
 					}
-				} else {
-					return "fail";
 				}
-			}
+			}	
 			
 			return "success";
-			
 			
 		} else {
 			return "fail";

@@ -49,7 +49,7 @@
 					<div id="modifyForm">
 						<form action="${pageContext.request.contextPath }/board/modify" method="get">
 							<!-- 글번호 -->
-							<input type="hidden" name="postNo" value="${pMap.post.POSTNO }">
+							<input type="hidden" name="postNo" value="${pMap.POSTNO }">
 							
 							<!-- 작성자 -->
 							<div class="form-group">
