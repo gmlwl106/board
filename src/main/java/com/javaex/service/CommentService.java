@@ -20,6 +20,7 @@ public class CommentService {
 		
 		if(cnt > 0) {
 			System.out.println(cmtVo.getCmtNo());
+			//등록한 댓글 가져오기
 			return cmtDao.getCmt(cmtVo.getCmtNo());
 		}
 		

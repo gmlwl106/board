@@ -10,8 +10,22 @@
 		</selectKey>
 		<![CDATA[
 			insert into comments
-			values(#{cmtNo}, #{postNo}, #{userNo}, #{content}, sysdate, 1)
+			values(#{cmtNo}, #{postNo}, #{userNo}, #{content}, sysdate, #{cmtNo})
 		]]>
 	</insert>
+	
+	<!-- 등록한 댓글 가져오기 -->
+	<select id="getCmt" parameterType="int" resultType="cmtVo">
+		<![CDATA[
+			select cmt_no cmtNo
+					,post_no postNo
+					,user_no userNo
+					,content
+					,reg_date regDate
+					,group_no groupNo
+			from comments
+			where cmt_no = #{cmtNo}
+		]]>
+	</select>
 
 </mapper>

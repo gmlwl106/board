@@ -69,7 +69,8 @@ $(document).ready(function() {
 			type : "post",
 			data : cmtVo,
 	
-			success : function(result){
+			success : function(cmtVo){
+				console.log(cmtVo);
 				
 			},
 			error : function(XHR, status, error) {

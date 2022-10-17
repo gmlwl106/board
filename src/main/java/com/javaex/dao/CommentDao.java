@@ -16,4 +16,9 @@ public class CommentDao {
 	public int insertCmt(CommentVo cmtVo) {
 		return sqlSession.insert("comments.insertCmt", cmtVo);
 	}
+
+	//등록한 댓글 가져오기
+	public CommentVo getCmt(int cmtNo) {
+		return sqlSession.selectOne("comments.getCmt", cmtNo);
+	}
 }
