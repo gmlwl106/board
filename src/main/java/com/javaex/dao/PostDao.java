@@ -36,7 +36,7 @@ public class PostDao {
 
 
 	//게시글 리스트 가져오기
-	public List<Map<String, Object>> getPostList(Map<String, String> map) {
+	public List<Map<String, Object>> getPostList(Map<String, Object> map) {
 		return sqlSession.selectList("post.getPostList", map);
 	}
 
@@ -50,5 +50,11 @@ public class PostDao {
 	//게시글 삭제
 	public int deletePost(int no) {
 		return sqlSession.delete("post.delete", no);
+	}
+
+
+	//전체글 갯수
+	public int getTotalCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("post.getTotalCnt", map);
 	}
 }

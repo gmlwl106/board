@@ -113,11 +113,63 @@ public class BoardService {
 
 	
 	//게시글 리스트 가져오기 (+검색)
-	public List<Map<String, Object>> getPostList(String kwdOpt, String keyword) {
-		Map<String, String> map = new HashMap<String, String>();
+	public Map<String, Object> getPostList(int crtPage, String kwdOpt, String keyword) {
+		
+		//페이지당 글 갯수
+		int listCnt = 10;
+		
+		//현재페이지
+		crtPage = (crtPage>0)? crtPage : (crtPage=1);
+		
+		int startRnum = (crtPage-1)*listCnt+1; //시작번호
+		int endRnum = (startRnum + listCnt)-1; //끝번호
+		
+		//파라미터 맵
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startRnum", startRnum);
+		map.put("endRnum", endRnum);
 		map.put("kwdOpt", kwdOpt);
 		map.put("keyword", keyword);
-		return postDao.getPostList(map);
+		
+		//게시글 리스트
+		List<Map<String, Object>> postList = postDao.getPostList(map);
+		
+		//=========================페이징 계산=========================
+		//전체글 갯수
+		int totalCnt = postDao.getTotalCnt(map);
+		System.out.println("전체글갯수:"+totalCnt);
+		
+		//페이지당 버튼 갯수
+		int pageBtnCnt = 5;
+		
+		//마지막 버튼 번호
+		int endPageBtnNo = (int)Math.ceil(crtPage / (double)pageBtnCnt)*pageBtnCnt;
+		
+		//시작 버튼 번호
+		int startPageBtnNo = (endPageBtnNo-pageBtnCnt) + 1;
+		
+		//다음 화살표 유무
+		boolean next = false;
+		if((listCnt*endPageBtnNo) < totalCnt) {
+			next = true;
+		} else {
+			endPageBtnNo = (int)Math.ceil(totalCnt/(double)listCnt);
+		}
+		
+		//이전 화살표 유무
+		boolean prev = false;
+		if(startPageBtnNo != 1) {
+			prev = true;
+		}
+		
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("postList", postList);
+		postMap.put("prev", prev);
+		postMap.put("next", next);
+		postMap.put("startPageBtnNo", startPageBtnNo);
+		postMap.put("endPageBtnNo", endPageBtnNo);
+		
+		return postMap;
 	}
 
 

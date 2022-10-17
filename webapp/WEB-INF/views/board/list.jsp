@@ -93,7 +93,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${pList }" var="postVo">
+								<c:forEach items="${boardMap.postList }" var="postVo">
 									<tr>
 										<td>${postVo.POSTNO }</td>
 										<td>${postVo.CATENAME }</td>
@@ -109,18 +109,24 @@
 			
 						<div id="paging">
 							<ul>
-								<li><a href="">◀</a></li>
-								<li><a href="">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li class="active"><a href="">5</a></li>
-								<li><a href="">6</a></li>
-								<li><a href="">7</a></li>
-								<li><a href="">8</a></li>
-								<li><a href="">9</a></li>
-								<li><a href="">10</a></li>
-								<li><a href="">▶</a></li>
+								<c:if test="${boardMap.prev eq true }">
+									<li><a href="${pageContext.request.contextPath }/board/list?crtPage=${boardMap.startPageBtnNo-1}&kwdOpt=${param.kwdOpt}&keyword=${param.keyword}">◀</a></li>
+								</c:if>
+								
+								<c:forEach begin="${boardMap.startPageBtnNo }" end="${boardMap.endPageBtnNo }" step="1" var="page">
+									<c:choose>
+										<c:when test="${param.crtPage eq page }">
+											<li class="active"><a href="${pageContext.request.contextPath }/board/list?crtPage=${page }&kwdOpt=${param.kwdOpt}&keyword=${param.keyword}">${page }</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="${pageContext.request.contextPath }/board/list?crtPage=${page }&kwdOpt=${param.kwdOpt}&keyword=${param.keyword}">${page }</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								
+								<c:if test="${boardMap.next eq true }">
+									<li><a href="${pageContext.request.contextPath }/board/list?crtPage=${boardMap.endPageBtnNo+1 }&kwdOpt=${param.kwdOpt}&keyword=${param.keyword}">▶</a></li>
+								</c:if>
 							</ul>
 							
 							

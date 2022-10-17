@@ -30,10 +30,11 @@ public class BoardController {
 	//게시판 리스트 폼 (+검색)
 	@RequestMapping(value="list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String listForm(Model model,
+			@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage,
 			@RequestParam(value="kwdOpt", required = false, defaultValue = "") String kwdOpt,
 			@RequestParam(value="keyword", required = false, defaultValue = "") String keyword) {
-		List<Map<String, Object>> pList = boardService.getPostList(kwdOpt, keyword);
-		model.addAttribute("pList", pList);
+		Map<String, Object> boardMap = boardService.getPostList(crtPage, kwdOpt, keyword);
+		model.addAttribute("boardMap", boardMap);
 		return "board/list";
 	}
 	
