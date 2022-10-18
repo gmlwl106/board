@@ -41,14 +41,23 @@ public class CommentService {
 
 	//댓글 수정
 	public String modifyCmt(CommentVo cmtVo) {
-		
-		//댓글 수정
 		int cnt = cmtDao.updateCmt(cmtVo);
 		
 		if(cnt > 0) {
 			return "success";
 		}
 		
+		return "fail";
+	}
+
+	//댓글 삭제
+	public String deleteCmt(int cmtNo) {
+		
+		int cnt = cmtDao.deleteCmt(cmtNo);
+		
+		if(cnt > 0) {
+			return "success";
+		}
 		return "fail";
 	}
 

@@ -35,5 +35,10 @@ public class CommentDao {
 		return sqlSession.update("comments.updateCmt", cmtVo);
 	}
 
+	//댓글 삭제
+	public int deleteCmt(int cmtNo) {
+		return sqlSession.delete("comments.deleteCmt", cmtNo);
+	}
+
 	
 }

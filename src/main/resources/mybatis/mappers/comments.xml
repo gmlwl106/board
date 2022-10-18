@@ -53,5 +53,13 @@
 			where cmt_no = #{cmtNo}
 		]]>
 	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteCmt" parameterType="int">
+		<![CDATA[
+			delete from comments
+			where group_no = #{cmtNo}
+		]]>
+	</delete>
 
 </mapper>

@@ -50,4 +50,11 @@ public class CommentController {
 		System.out.println(cmtVo);
 		return cmtService.modifyCmt(cmtVo);
 	}
+	
+	//댓글 삭제
+	@ResponseBody
+	@RequestMapping(value="deleteCmt", method= {RequestMethod.GET, RequestMethod.POST})
+	public String deleteCmt(@RequestParam(value="cmtNo") int cmtNo) {
+		return cmtService.deleteCmt(cmtNo);
+	}
 }

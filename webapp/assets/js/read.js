@@ -6,6 +6,7 @@ $(document).ready(function() {
 	
 	/* *****************************글 삭제 전 확인***************************** */
 	$("#btn_delete").on("click", function() {
+		//확인창 띄움
 		var result = confirm("글을 삭제 하시겠습니까?");
 		
 		if(result == true) {
@@ -129,6 +130,38 @@ $(document).ready(function() {
 				console.error(status + " : " + error);
 			}
 		});
+	});
+	
+	
+	/*댓글 삭제 버튼 클릭했을때*/
+	$('#cmtRead').on("click", '.cmt-delete', function() {
+		//확인창 띄움
+		var result = confirm("글을 삭제 하시겠습니까?");
+		
+		if(result == true) {
+			var $this = $(this);
+			var cmtNo = $this.data("no"); //선택한 댓글 번호
+			
+			$.ajax({
+				url : contextPath+"/comment/deleteCmt",
+				type : "post",
+				data : {cmtNo},
+		
+				success : function(result){
+					console.log(result);
+					
+					if(result == 'success') {
+						location.href = location.href;
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		} else {
+			console.log("삭제 ㄴㄴ");
+		}
+		
 	});
 	
 	
