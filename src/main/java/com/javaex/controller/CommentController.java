@@ -31,14 +31,14 @@ public class CommentController {
 	//댓글 가져오기
 	@ResponseBody
 	@RequestMapping(value="getCmt", method = {RequestMethod.GET, RequestMethod.POST})
-	public CommentVo getCmt(@RequestParam(value="cmtNo") int cmtNo) {
+	public Map<String, Object> getCmt(@RequestParam(value="cmtNo") int cmtNo) {
 		return cmtService.getCmt(cmtNo);
 	}
 
 	//댓글 등록
 	@ResponseBody
 	@RequestMapping(value="write", method= {RequestMethod.GET, RequestMethod.POST})
-	public CommentVo write(@ModelAttribute(value="cmtVo") CommentVo cmtVo) {
+	public Map<String, Object> write(@ModelAttribute(value="cmtVo") CommentVo cmtVo) {
 		System.out.println(cmtVo);
 		return cmtService.write(cmtVo);
 	}

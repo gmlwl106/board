@@ -77,7 +77,8 @@ $(document).ready(function() {
 	
 			success : function(cmtVo){
 				console.log(cmtVo);
-				
+				render(cmtVo);
+				$('#cmtContent').val("");
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);

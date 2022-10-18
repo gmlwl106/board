@@ -31,17 +31,19 @@
 		]]>
 	</insert>
 	
-	<!-- 등록한 댓글 가져오기 -->
-	<select id="getCmt" parameterType="int" resultType="cmtVo">
+	<!-- 댓글 가져오기 -->
+	<select id="getCmt" parameterType="int" resultType="map">
 		<![CDATA[
 			select cmt_no cmtNo
 					,post_no postNo
-					,user_no userNo
+					,c.user_no userNo
+					,name
 					,content
-					,reg_date regDate
+					,to_char(reg_date, 'yyyy-mm-dd hh24:mi') regDate
 					,group_no groupNo
-			from comments
-			where cmt_no = #{cmtNo}
+			from comments c, users u
+			where c.user_no = u.user_no
+			and cmt_no = #{cmtNo}
 		]]>
 	</select>
 	

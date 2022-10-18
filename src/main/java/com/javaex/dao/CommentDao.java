@@ -26,7 +26,7 @@ public class CommentDao {
 	}
 
 	//댓글 가져오기
-	public CommentVo getCmt(int cmtNo) {
+	public Map<String, Object> getCmt(int cmtNo) {
 		return sqlSession.selectOne("comments.getCmt", cmtNo);
 	}
 

@@ -339,7 +339,9 @@
 }
 
 #board #comment table td {
-	padding: 5px 0px;
+	height: 40px;
+	padding: 10px 0px;
+	border-bottom: 1px solid #E5E5E5;
 }
 
 /* 댓글 입력칸 */

@@ -21,12 +21,12 @@ public class CommentService {
 	}
 	
 	//댓글 가져오기
-	public CommentVo getCmt(int cmtNo) {
+	public Map<String, Object> getCmt(int cmtNo) {
 		return cmtDao.getCmt(cmtNo);
 	}
 
 	//댓글 등록
-	public CommentVo write(CommentVo cmtVo) {
+	public Map<String, Object> write(CommentVo cmtVo) {
 
 		//댓글 등록
 		int cnt = cmtDao.insertCmt(cmtVo);
