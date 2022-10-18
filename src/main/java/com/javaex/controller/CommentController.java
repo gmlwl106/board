@@ -27,6 +27,13 @@ public class CommentController {
 	public List<Map<String, Object>> getCmtList(@RequestParam(value="postNo") int postNo) {
 		return cmtService.getCmtList(postNo);
 	}
+	
+	//댓글 가져오기
+	@ResponseBody
+	@RequestMapping(value="getCmt", method = {RequestMethod.GET, RequestMethod.POST})
+	public CommentVo getCmt(@RequestParam(value="cmtNo") int cmtNo) {
+		return cmtService.getCmt(cmtNo);
+	}
 
 	//댓글 등록
 	@ResponseBody
@@ -34,5 +41,13 @@ public class CommentController {
 	public CommentVo write(@ModelAttribute(value="cmtVo") CommentVo cmtVo) {
 		System.out.println(cmtVo);
 		return cmtService.write(cmtVo);
+	}
+	
+	//댓글 수정
+	@ResponseBody
+	@RequestMapping(value="modifyCmt", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyCmt(@ModelAttribute(value="cmtVo") CommentVo cmtVo) {
+		System.out.println(cmtVo);
+		return cmtService.modifyCmt(cmtVo);
 	}
 }

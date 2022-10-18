@@ -19,6 +19,11 @@ public class CommentService {
 	public List<Map<String, Object>> getCmtList(int postNo) {
 		return cmtDao.getCmtList(postNo);
 	}
+	
+	//댓글 가져오기
+	public CommentVo getCmt(int cmtNo) {
+		return cmtDao.getCmt(cmtNo);
+	}
 
 	//댓글 등록
 	public CommentVo write(CommentVo cmtVo) {
@@ -27,13 +32,27 @@ public class CommentService {
 		int cnt = cmtDao.insertCmt(cmtVo);
 		
 		if(cnt > 0) {
-			System.out.println(cmtVo.getCmtNo());
 			//등록한 댓글 가져오기
 			return cmtDao.getCmt(cmtVo.getCmtNo());
 		}
 		
 		return null;
 	}
+
+	//댓글 수정
+	public String modifyCmt(CommentVo cmtVo) {
+		
+		//댓글 수정
+		int cnt = cmtDao.updateCmt(cmtVo);
+		
+		if(cnt > 0) {
+			return "success";
+		}
+		
+		return "fail";
+	}
+
+	
 
 	
 

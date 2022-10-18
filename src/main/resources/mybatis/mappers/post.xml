@@ -103,6 +103,7 @@
 			select post_no postNo
 			        ,category_name cateName
 			        ,title
+			        ,u.user_no userNo
 			        ,name
 			        ,to_char(p.reg_date, 'yyyy-mm-dd hh24:mm') regDate
 			        ,hit

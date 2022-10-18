@@ -358,6 +358,11 @@
 	cursor: pointer;
 }
 
+/* 댓글 내용 */
+#board #comment span {
+	font-weight: bold;
+}
+
 /* 댓글 수정 버튼 */
 #board #comment .cmt-modify {
 	border: 1px solid transparent;
@@ -366,7 +371,7 @@
 	padding: 2px 5px;
 	margin: 0px 0px 0px 10px;
 	font-size: 12px;
-	color: blue;
+	color: #999999;
 	cursor: pointer;
 }
 
@@ -392,4 +397,27 @@
 	font-size: 12px;
 	color: white;
 	cursor: pointer;
+}
+
+/* 모달창 */
+.modal-header {text-align: center;}
+.modal-header .modal-title {
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+}
+.modal-dialog {
+	width: 300px;
+	height: auto;
+	position: fixed;
+	top: 20%;
+	left: 40%;
+	transform: translate(-50%, -50%);
+}
+.modal-body {
+	padding: 16px 24px;
+	text-align: left;
+}
+.modal-body #modContent {
+	width: 100%;
 }

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- css -->
+<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
 <!-- js -->
@@ -15,6 +16,7 @@
 	window.contextPath = '${pageContext.request.contextPath}';
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/read.js"></script>
 
 </head>
@@ -56,6 +58,7 @@
 							<div class="form-group">
 								<span class="form-text">작성자</span>
 								<span class="form-value">${pMap.post.NAME }</span>
+								<input type="hidden" id="userNo" value="${pMap.post.USERNO }">
 							</div>
 							
 							<!-- 조회수 -->
@@ -121,7 +124,7 @@
 							<tr>
 								<td>
 									${authUser.name }
-									<input type="hidden" id="userNo" value="${authUser.userNo }">
+									<input type="hidden" id="authUserNo" value="${authUser.userNo }">
 								</td>
 								<td><input type="text" id="cmtContent" maxlength="30"></td>
 								<td><button id="cmtBtn">등록</button></td>
@@ -157,7 +160,25 @@
 		<!-- //footer -->
 	</div>
 	<!-- //wrap -->
-
+	
+<!-- 댓글 수정 모달창 -->
+<div class="modal" tabindex="-1" role="dialog" id="modifyCmt">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">댓글 수정</h5>
+      </div>
+      <div class="modal-body">
+      	<input type="hidden" id="cmtNo" name="cmtNo" value="">
+        <input type="text" id="modContent" name="modContent" value="" maxlength="30">
+      </div>
+      <div class="modal-footer">
+      	<button type="button" id="modCmt-btn" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+      </div>
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
 </body>
 
 </html>

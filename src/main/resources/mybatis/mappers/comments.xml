@@ -44,5 +44,14 @@
 			where cmt_no = #{cmtNo}
 		]]>
 	</select>
+	
+	<!-- 댓글 수정 -->
+	<insert id="updateCmt" parameterType="cmtVo">
+		<![CDATA[
+			update comments
+			set content = #{content}
+			where cmt_no = #{cmtNo}
+		]]>
+	</insert>
 
 </mapper>
