@@ -1,5 +1,8 @@
 package com.javaex.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +14,11 @@ public class CommentDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//댓글 리스트 가져오기
+	public List<Map<String, Object>> getCmtList(int postNo) {
+		return sqlSession.selectList("comments.getCmtList", postNo);
+	}
 
 	//댓글 등록
 	public int insertCmt(CommentVo cmtVo) {
@@ -21,4 +29,6 @@ public class CommentDao {
 	public CommentVo getCmt(int cmtNo) {
 		return sqlSession.selectOne("comments.getCmt", cmtNo);
 	}
+
+	
 }

@@ -106,7 +106,6 @@ public class BoardService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("post", post);
 		map.put("fileList", fileList);
-		//댓글
 		
 		return map;
 	}

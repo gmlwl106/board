@@ -3,6 +3,23 @@
 
 <mapper namespace="comments">
 
+	<!-- 댓글 리스트 가져오기 -->
+	<select id="getCmtList" parameterType="int" resultType="map">
+		<![CDATA[
+			select cmt_no cmtNo
+			        ,post_no postNo
+			        ,u.user_no userNo
+			        ,name
+			        ,content
+			        ,to_char(reg_date, 'yyyy-mm-dd hh24:mi') regDate
+			        ,group_no
+			from comments c, users u
+			where c.user_no = u.user_no
+			and post_no = #{postNo}
+			order by group_no, reg_date
+		]]>
+	</select>
+
 	<!-- 댓글 등록 -->
 	<insert id="insertCmt" parameterType="cmtVo">
 		<selectKey keyProperty="cmtNo" resultType="int" order="BEFORE">

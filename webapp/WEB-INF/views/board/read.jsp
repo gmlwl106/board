@@ -134,14 +134,15 @@
 								<col style="width: 75%;">
 								<col style="width: 15%;">
 							</colgroup>
-							<tr>
+							<!-- 댓글 리스트 -->
+							<!-- <tr>
 								<td>박깜이</td>
 								<td>
 									댓글댓글댓글
-									<button id="reply">답글</button>
+									<button id="reply" data-no="">답글</button>
 								</td>
 								<td>2022-10-17 16:44</td>
-							</tr>
+							</tr> -->
 						</table>
 					</div>
 				</div>
