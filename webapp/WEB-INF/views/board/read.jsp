@@ -114,39 +114,30 @@
 					
 					<div id="comment">	
 						<h3>댓글</h3>				
-						<table id="cmtWrite">
-							<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 80%;">
-								<col style="width: 30%;">
-							</colgroup>
+						
+						<!-- 댓글 등록 -->
+						<div id="cmtWrite">
+							<span class="form-text">${authUser.name }</span>
+							<input type="hidden" id="authUserNo" value="${authUser.userNo }">
 							
-							<tr>
-								<td>
-									${authUser.name }
-									<input type="hidden" id="authUserNo" value="${authUser.userNo }">
-								</td>
-								<td><input type="text" id="cmtContent" maxlength="30"></td>
-								<td><button id="cmtBtn">등록</button></td>
-							</tr>
-						</table>
-					
-						<table id="cmtRead">
-							<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 75%;">
-								<col style="width: 15%;">
-							</colgroup>
-							<!-- 댓글 리스트 -->
-							<!-- <tr>
-								<td>박깜이</td>
-								<td>
-									댓글댓글댓글
-									<button id="reply" data-no="">답글</button>
-								</td>
-								<td>2022-10-17 16:44</td>
-							</tr> -->
-						</table>
+							<input type="text" id="cmtContent" maxlength="30">
+							<button type="button" id="cmtBtn">등록</button>
+						</div>
+						
+						<!-- 댓글 리스트 출력 -->
+						<div id="cmtRead">
+							<div class="comments">
+								<span class="form-text">박깜이</span>
+								<span class="cmt-content">
+									안녕하세요. 댓글입니다^^
+									<button type="button" class="cmt-modify">수정</button>
+									<button type="button" class="cmt-delete">삭제</button>
+									<button class="replyBtn" id="replyBtn">답글</button>
+								</span>
+								<span>2022-10-17 16:44</span>
+							</div>
+						
+						</div>
 					</div>
 				</div>
 				<!-- //board -->

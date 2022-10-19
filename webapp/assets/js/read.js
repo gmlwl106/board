@@ -179,10 +179,14 @@ function fetchList() {
 		data : {postNo},
 
 		success : function(cmtList){
-			/*댓글 하나씩 그리기*/
-			for(var i=0; i<cmtList.length; i++) {
-				render(cmtList[i]);
+			
+			if(cmtList.length > 0) {
+				/*댓글 하나씩 그리기*/
+				for(var i=0; i<cmtList.length; i++) {
+					render(cmtList[i]);
+				}
 			}
+			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -198,24 +202,24 @@ function render(cmtVo) {
 	var userNo = $('#userNo').val(); //댓글 작성자
 	
 	var str = '';
-	str += '<tr>';
-	str += '	<td>'+cmtVo.NAME+'</td>';
-	str += '	<td>';
-	str += '		<div id="cmt-content'+cmtVo.CMTNO+'">';
-	str += '			<span id="content-'+cmtVo.CMTNO+'">'+cmtVo.CONTENT+'</span>';
-	//댓글 작성자일때 수정 삭제버튼 출력
+	
+	str += '<div class="comments">';
+	str += '	<span class="form-text">박깜이</span>';
+	str += '	<span class="cmt-content">';
+	str += '		<span id="content-'+cmtVo.CMTNO+'">'+cmtVo.CONTENT+'</span>';
+	//댓글 작성자일때 수정, 삭제버튼 출력
 	if(authUserNo == cmtVo.USERNO) {
-		str += '		<button class="cmt-modify" name="cmt_modify" data-no="'+cmtVo.CMTNO+'">수정</button>';
-		str += '		<button class="cmt-delete" name="cmt-delete" data-no="'+cmtVo.CMTNO+'">삭제</button>';
+	str += '		<button type="button" class="cmt-modify" data-no="'+cmtVo.CMTNO+'">수정</button>';
+	str += '		<button type="button" class="cmt-delete" data-no="'+cmtVo.CMTNO+'">삭제</button>';
 	}
 	//게시글 작성자가 로그인 했을 때 답글 버튼 출력
 	if(authUserNo == userNo) {
-		str += '		<button class="replyBtn" id="replyBtn" data-no="'+cmtVo.CMTNO+'">답글</button>';
+	str += '		<button class="replyBtn" id="replyBtn" data-no="'+cmtVo.CMTNO+'">답글</button>';
 	}
-	str += '		</div>';
-	str += '	</td>';
-	str += '	<td>'+cmtVo.REGDATE+'</td>';
-	str += '</tr>';
+	str += '	</span>';
+	str += '	<span>'+cmtVo.REGDATE+'</span>';
+	str += '</div>';
+	
 	
 	$('#cmtRead').append(str);
 }
