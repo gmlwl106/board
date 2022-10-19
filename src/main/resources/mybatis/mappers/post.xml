@@ -28,6 +28,7 @@
 			        ,cateNo
 			        ,cateName
 			        ,title
+			        ,cmtCnt
 			        ,fileCnt
 			        ,name
 			        ,regDate
@@ -37,6 +38,7 @@
 			                ,cateNo
 			                ,cateName
 			                ,title
+			                ,cmtCnt
 			                ,fileCnt
 			                ,name
 			                ,regDate
@@ -45,6 +47,7 @@
 			                        ,p.category_no cateNo
 			                        ,category_name cateName
 			                        ,title
+			                        ,nvl(cmtCnt, 0)cmtCnt
 			                        ,nvl(fileCnt, 0)fileCnt
 			                        ,name
 			                        ,to_char(p.reg_date, 'yyyy-mm-dd hh24:mi') regDate
@@ -52,10 +55,14 @@
 			                from post p, category c, users u, (select post_no
 			                                                            ,count(file_no) fileCnt
 			                                                    from files
-			                                                    group by post_no) f
+			                                                    group by post_no) f, (select post_no
+			                                                    								,count(cmt_no) cmtCnt
+																						from comments
+																						group by post_no) cmt
 			                where p.category_no = c.category_no
 			                and p.user_no = u.user_no
 			                and p.post_no = f.post_no(+)
+			                and p.post_no = cmt.post_no(+)
 		]]>
 		<choose>
 			<when test='kwdOpt.equals("title")'>
