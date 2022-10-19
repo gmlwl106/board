@@ -333,13 +333,13 @@
 
 #board #comment h3 {
 	border-bottom: 1px solid #999999;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 	margin-bottom: 5px;
 }
 
 /* 댓글 등록 */
 #board #comment #cmtWrite {
-	padding: 5px 0px;
+	padding: 10px 0px;
 }
 
 /* 댓글 입력칸 */
@@ -409,7 +409,7 @@
 	cursor: pointer;
 }
 
-/* 모달창 */
+/* 댓글 수정 모달창 */
 .modal-header {text-align: center;}
 .modal-header .modal-title {
 	font-size: 18px;
@@ -430,4 +430,31 @@
 }
 .modal-body #modContent {
 	width: 100%;
+}
+
+/* 답글 등록창 */
+#board #comment #cmtRead .reply {
+	display: none;
+	height: 50px;
+	background-color: #EAEAEA;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+}
+#board #comment #cmtRead .reply img {
+	position: relative;
+	top: -5px;
+	margin-right: 5px;
+}
+#board #comment #cmtRead .replytxt {
+	width: 620px;
+}
+#board #comment #cmtRead .replySubmit {
+	width: 90px;
+	height: 30px;
+	border: 1px solid #A6A6A6;
+	border-radius: 2px;
+	background-color: #E5E5E5;
+	margin: 0px 0px 0px 10px;
+	font-size: 14px;
+	cursor: pointer;
 }

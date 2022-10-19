@@ -166,6 +166,20 @@ $(document).ready(function() {
 	});
 	
 	
+	
+	
+	/* *****************************답글***************************** */
+	
+	/*답글 버튼 클릭했을 때*/
+	$('#cmtRead').on("click", '#replyBtn', function() {
+		var $this = $(this);
+		var cmtNo = $this.data("no"); //선택한 댓글 번호
+		console.log("답글버튼 "+cmtNo);
+		
+		$('#reply-'+cmtNo).toggle('slow');
+		
+	});
+	
 });
 
 
@@ -204,14 +218,16 @@ function render(cmtVo) {
 	var str = '';
 	
 	str += '<div class="comments">';
-	str += '	<span class="form-text">박깜이</span>';
+	str += '	<span class="form-text">'+cmtVo.NAME+'</span>';
 	str += '	<span class="cmt-content">';
 	str += '		<span id="content-'+cmtVo.CMTNO+'">'+cmtVo.CONTENT+'</span>';
+	
 	//댓글 작성자일때 수정, 삭제버튼 출력
 	if(authUserNo == cmtVo.USERNO) {
 	str += '		<button type="button" class="cmt-modify" data-no="'+cmtVo.CMTNO+'">수정</button>';
 	str += '		<button type="button" class="cmt-delete" data-no="'+cmtVo.CMTNO+'">삭제</button>';
 	}
+	
 	//게시글 작성자가 로그인 했을 때 답글 버튼 출력
 	if(authUserNo == userNo) {
 	str += '		<button class="replyBtn" id="replyBtn" data-no="'+cmtVo.CMTNO+'">답글</button>';
@@ -219,6 +235,15 @@ function render(cmtVo) {
 	str += '	</span>';
 	str += '	<span>'+cmtVo.REGDATE+'</span>';
 	str += '</div>';
+	
+	//게시글 작성자가 로그인 했을 때 답글 입력창 출력
+	if(authUserNo == userNo) {
+	str += '<div class="reply" id="reply-'+cmtVo.CMTNO+'">';
+	str += '	<img src="'+contextPath+'/assets/image/reply.png">';
+	str += '	<input type="text" class="replytxt" maxlength="30">';
+	str += '	<button type="button" class="replySubmit">답글 등록</button>';
+	str += '</div>';
+	}
 	
 	
 	$('#cmtRead').append(str);

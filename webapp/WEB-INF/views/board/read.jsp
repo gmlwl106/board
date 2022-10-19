@@ -136,6 +136,12 @@
 								</span>
 								<span>2022-10-17 16:44</span>
 							</div>
+							
+							<div class="reply">
+								<img src="${pageContext.request.contextPath }/assets/image/reply.png">
+								<input type="text" class="replytxt" maxlength="30">
+								<button type="button" class="replySubmit">답글 등록</button>
+							</div>
 						
 						</div>
 					</div>
