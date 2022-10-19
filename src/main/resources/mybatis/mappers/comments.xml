@@ -21,7 +21,7 @@
 			                            group by group_no) cn
 			where c.user_no = u.user_no
 			and c.cmt_no = cn.group_no(+)
-			and post_no = 62
+			and post_no = #{postNo}
 			order by c.group_no, depth
 		]]>
 	</select>
@@ -46,10 +46,15 @@
 					,name
 					,content
 					,to_char(reg_date, 'yyyy-mm-dd hh24:mi') regDate
-					,group_no groupNo
+					,c.group_no groupNo
 					,depth
-			from comments c, users u
+					,cn.cnt cnt
+			from comments c, users u, (select group_no
+			                                ,count(group_no) cnt
+			                            from comments
+			                            group by group_no) cn
 			where c.user_no = u.user_no
+			and c.cmt_no = cn.group_no(+)
 			and cmt_no = #{cmtNo}
 		]]>
 	</select>

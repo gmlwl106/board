@@ -4,6 +4,12 @@
  
 $(document).ready(function() {
 	
+	//로그인 안했을때 로그인창으로 이동
+	var authUserNo = $("#authUserNo").val();
+	if(authUserNo == null || authUserNo == "" || authUserNo == undefined || isNaN(authUserNo)) {
+		location.href = contextPath+"/user/loginForm";
+	}
+	
 	/* *****************************글 삭제 전 확인***************************** */
 	$("#btn_delete").on("click", function() {
 		//확인창 띄움
@@ -64,26 +70,31 @@ $(document).ready(function() {
 		var authUserNo = $('#authUserNo').val();
 		var content = $('#cmtContent').val();
 		
-		var cmtVo = {
-			postNo : postNo,
-			userNo : authUserNo,
-			content : content
-		};
+		if(content == null || content == "") {
+			alert('내용을 입력해주세요');
+		} else {
+			var cmtVo = {
+				postNo : postNo,
+				userNo : authUserNo,
+				content : content
+			};
+			
+			$.ajax({
+				url : contextPath+"/comment/write",
+				type : "post",
+				data : cmtVo,
 		
-		$.ajax({
-			url : contextPath+"/comment/write",
-			type : "post",
-			data : cmtVo,
-	
-			success : function(cmtVo){
-				console.log(cmtVo);
-				render(cmtVo);
-				$('#cmtContent').val("");
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+				success : function(cmtVo){
+					console.log(cmtVo);
+					render(cmtVo, $('#cmtRead'));
+					$('#cmtContent').val("");
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		}
+		
 	});
 	
 	
@@ -106,31 +117,38 @@ $(document).ready(function() {
 		var cmtNo = $('#cmtNo').val();
 		var content = $('#modContent').val();
 		
-		var cmtVo = {
-			cmtNo: cmtNo,
-			content: content
-		};
+		if(content == null || content == "") {
+			alert('내용을 입력해주세요');
+		} else {
+			
+			var cmtVo = {
+				cmtNo: cmtNo,
+				content: content
+			};
+			
+			$.ajax({
+				url : contextPath+"/comment/modifyCmt",
+				type : "post",
+				data : cmtVo,
 		
-		$.ajax({
-			url : contextPath+"/comment/modifyCmt",
-			type : "post",
-			data : cmtVo,
-	
-			success : function(result){
-				console.log(result);
-				
-				if(result === 'success') {
-					//댓글 내용 수정
-					$('#content-'+cmtNo).text(content);
-					//모달 숨기기
-					$('#modifyCmt').modal('hide');
+				success : function(result){
+					console.log(result);
+					
+					if(result === 'success') {
+						//댓글 내용 수정
+						$('#content-'+cmtNo).text(content);
+						//모달 숨기기
+						$('#modifyCmt').modal('hide');
+					}
+					
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
 				}
-				
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+			});
+		}
+		
+		
 	});
 	
 	
@@ -142,8 +160,6 @@ $(document).ready(function() {
 		if(result == true) {
 			var $this = $(this);
 			var cmtNo = $this.data("no"); //선택한 댓글 번호
-			
-			console.log(cmtNo);
 			
 			$.ajax({
 				url : contextPath+"/comment/deleteCmt",
@@ -191,32 +207,34 @@ $(document).ready(function() {
 		var postNo = $('#postNo').val();
 		var authUserNo = $('#authUserNo').val();
 		
-		var cmtVo = {
-			postNo : postNo,
-			userNo : authUserNo,
-			content : content,
-			groupNo : cmtNo,
-			depth : 1
-		};
+		if(content == null || content == "") {
+			alert('내용을 입력해주세요');
+		} else {
+			var cmtVo = {
+				postNo : postNo,
+				userNo : authUserNo,
+				content : content,
+				groupNo : cmtNo,
+				depth : 1
+			};
+			
+			
+			$.ajax({
+				url : contextPath+"/comment/writeReply",
+				type : "post",
+				data : cmtVo,
 		
-		
-		$.ajax({
-			url : contextPath+"/comment/writeReply",
-			type : "post",
-			data : cmtVo,
-	
-			success : function(replyVo){
-				console.log(replyVo);
-				
-				$('#reply-'+cmtNo).toggle('0');
-				render(replyVo,$('#comments-'+cmtNo));
-				$('#replyBtn-'+cmtNo).remove();
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		
+				success : function(replyVo){
+					
+					$('#reply-'+cmtNo).toggle(0);
+					render(replyVo,$('#comments-'+cmtNo));
+					$('#replyBtn-'+cmtNo).remove();
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		}
 	});
 	
 });

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EanBoard</title>
 <!-- css -->
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
@@ -15,7 +15,7 @@
 	window.contextPath = '${pageContext.request.contextPath}';
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/writeForm.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/board/writeForm.js"></script>
 </head>
 
 
@@ -54,7 +54,7 @@
 					<div id="writeForm">
 						<!-- <form action="./write" method="get"> -->
 							<!-- 작성자 no -->
-							<input type="hidden" name="userNo" value="${authUser.userNo }">
+							<input type="hidden" id="authUserNo" name="userNo" value="${authUser.userNo }">
 							<!-- 카테고리 -->
 							<div class="form-group">
 								<label class="form-text" for="category">카테고리</label>

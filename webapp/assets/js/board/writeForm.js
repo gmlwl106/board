@@ -3,7 +3,13 @@
  */
  
  $(document).ready(function() {
-	console.log("어쩔티비");
+	
+
+	//로그인 안했을때 로그인창으로 이동
+	var authUserNo = $("#authUserNo").val();
+	if(authUserNo == null || authUserNo == "" || authUserNo == undefined || isNaN(authUserNo)) {
+		location.href = contextPath+"/user/loginForm";
+	}
 	
 	//파일 리스트
 	var fileList = [];
@@ -59,40 +65,48 @@
 		var title = $('#txt-title').val();
 		var content = $('#txt-content').val();
 		
-		//formData에 값 추가
-		var formData = new FormData();
-		formData.append('userNo', userNo);
-		formData.append('cateNo', cateNo);
-		formData.append('title', title);
-		formData.append('content', content);
-		if(fileList.length > 0) {
-			for(var i=0; i<fileList.length; i++) {
-				formData.append('file', fileList[i]);
+		if(title == null || title == "") {
+			alert('제목을 입력해주세요');
+		} else if(content == null || content == "") {
+			alert('내용을 입력해주세요');
+		} else {
+				
+			//formData에 값 추가
+			var formData = new FormData();
+			formData.append('userNo', userNo);
+			formData.append('cateNo', cateNo);
+			formData.append('title', title);
+			formData.append('content', content);
+			if(fileList.length > 0) {
+				for(var i=0; i<fileList.length; i++) {
+					formData.append('file', fileList[i]);
+				}
 			}
+			
+			//ajax로 데이터 전송
+			$.ajax({
+				//보낼때
+				url : contextPath+"/board/write",
+				type : "post",
+				data : formData,
+				processData: false,
+				contentType: false,
+				enctype : 'multipart/form-data',
+				
+				success : function(result){
+					console.log(result);
+					if(result === 'success') {
+						location.href = contextPath+"/board/list";
+					} else {
+						location.href = contextPath+"/board/writeForm?result=fail";
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
 		}
 		
-		//ajax로 데이터 전송
-		$.ajax({
-			//보낼때
-			url : contextPath+"/board/write",
-			type : "post",
-			data : formData,
-			processData: false,
-			contentType: false,
-			enctype : 'multipart/form-data',
-			
-			success : function(result){
-				console.log(result);
-				if(result === 'success') {
-					location.href = contextPath+"/board/list";
-				} else {
-					location.href = contextPath+"/board/writeForm?result=fail";
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
 	});
 });
 

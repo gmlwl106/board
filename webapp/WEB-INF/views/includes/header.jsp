@@ -3,7 +3,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="${pageContext.request.contextPath }/">MySite</a>
+				<a href="${pageContext.request.contextPath }/">Ean Soft</a>
 			</h1>
 			
 			<c:choose>

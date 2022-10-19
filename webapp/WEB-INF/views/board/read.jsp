@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- css -->
+<title>EanBoard</title>
+<!-- css -->->
 <link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/read.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/board/read.js"></script>
 
 </head>
 
@@ -103,8 +103,12 @@
 							</div>
 							
 							
-							<a id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${pMap.post.POSTNO}">수정</a>
-							<a id="btn_delete" href="">삭제</a>
+							<c:choose>
+								<c:when test="${authUser.userNo eq pMap.post.USERNO }">
+									<a id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${pMap.post.POSTNO}">수정</a>
+									<a id="btn_delete" href="">삭제</a>
+								</c:when>
+							</c:choose>
 							<a id="btn_list" href="${pageContext.request.contextPath }/board/list?crtPage=${crtPage }&kwdOpt=${kwdOpt }&keyword=${keyword}">목록</a>
 							
 						</form>
