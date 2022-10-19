@@ -440,9 +440,11 @@
 	padding: 10px 20px;
 	margin-bottom: 10px;
 }
-#board #comment #cmtRead .reply img {
+#board #comment img {
+	width: 16px;
+	height: 16px;
 	position: relative;
-	top: -5px;
+	top: -2px;
 	margin-right: 5px;
 }
 #board #comment #cmtRead .replytxt {

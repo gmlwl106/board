@@ -126,7 +126,7 @@
 						
 						<!-- 댓글 리스트 출력 -->
 						<div id="cmtRead">
-							<div class="comments">
+							<%-- <div class="comments">
 								<span class="form-text">박깜이</span>
 								<span class="cmt-content">
 									안녕하세요. 댓글입니다^^
@@ -141,8 +141,7 @@
 								<img src="${pageContext.request.contextPath }/assets/image/reply.png">
 								<input type="text" class="replytxt" maxlength="30">
 								<button type="button" class="replySubmit">답글 등록</button>
-							</div>
-						
+							</div> --%>
 						</div>
 					</div>
 				</div>

@@ -57,4 +57,12 @@ public class CommentController {
 	public String deleteCmt(@RequestParam(value="cmtNo") int cmtNo) {
 		return cmtService.deleteCmt(cmtNo);
 	}
+	
+	//답글 등록
+	@ResponseBody
+	@RequestMapping(value="writeReply", method= {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, Object> writeReply(@ModelAttribute(value="cmtVo") CommentVo cmtVo) {
+		System.out.println(cmtVo);
+		return cmtService.writeReply(cmtVo);
+	}
 }

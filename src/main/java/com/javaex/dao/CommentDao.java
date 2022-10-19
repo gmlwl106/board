@@ -36,9 +36,19 @@ public class CommentDao {
 	}
 
 	//댓글 삭제
-	public int deleteCmt(int cmtNo) {
-		return sqlSession.delete("comments.deleteCmt", cmtNo);
+	public int deleteCmt(Map<String, Integer> map) {
+		return sqlSession.delete("comments.deleteCmt", map);
+	}
+	
+	
+	//답글 등록
+	public int insertReply(CommentVo cmtVo) {
+		return sqlSession.insert("comments.insertReply", cmtVo);
 	}
 
+	//Depth 가져오기
+	public int getDepth(int cmtNo) {
+		return sqlSession.selectOne("comments.getDepth", cmtNo);
+	}
 	
 }

@@ -143,6 +143,8 @@ $(document).ready(function() {
 			var $this = $(this);
 			var cmtNo = $this.data("no"); //선택한 댓글 번호
 			
+			console.log(cmtNo);
+			
 			$.ajax({
 				url : contextPath+"/comment/deleteCmt",
 				type : "post",
@@ -170,13 +172,50 @@ $(document).ready(function() {
 	
 	/* *****************************답글***************************** */
 	
-	/*답글 버튼 클릭했을 때*/
-	$('#cmtRead').on("click", '#replyBtn', function() {
+	/*답글 버튼 클릭 했을 때*/
+	$('#cmtRead').on("click", '.replyBtn', function() {
 		var $this = $(this);
 		var cmtNo = $this.data("no"); //선택한 댓글 번호
-		console.log("답글버튼 "+cmtNo);
+		//console.log("답글버튼 "+cmtNo);
 		
-		$('#reply-'+cmtNo).toggle('slow');
+		//답글 입력창 토글
+		$('#reply-'+cmtNo).toggle('fast');
+	});
+	
+	/*답글 등록 버튼 클릭 했을 때*/
+	$('#cmtRead').on("click", '.replySubmit', function() {
+		var $this = $(this);
+		var cmtNo = $this.data("no"); //선택한 댓글 번호
+		console.log("답글등록버튼 "+cmtNo);
+		var content = $('#re-txt-'+cmtNo).val();
+		var postNo = $('#postNo').val();
+		var authUserNo = $('#authUserNo').val();
+		
+		var cmtVo = {
+			postNo : postNo,
+			userNo : authUserNo,
+			content : content,
+			groupNo : cmtNo,
+			depth : 1
+		};
+		
+		
+		$.ajax({
+			url : contextPath+"/comment/writeReply",
+			type : "post",
+			data : cmtVo,
+	
+			success : function(replyVo){
+				console.log(replyVo);
+				
+				$('#reply-'+cmtNo).toggle('0');
+				render(replyVo,$('#comments-'+cmtNo));
+				$('#replyBtn-'+cmtNo).remove();
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 		
 	});
 	
@@ -197,7 +236,7 @@ function fetchList() {
 			if(cmtList.length > 0) {
 				/*댓글 하나씩 그리기*/
 				for(var i=0; i<cmtList.length; i++) {
-					render(cmtList[i]);
+					render(cmtList[i], $('#cmtRead'));
 				}
 			}
 			
@@ -210,14 +249,18 @@ function fetchList() {
 }
 
 /*댓글 그리기*/
-function render(cmtVo) {
+function render(cmtVo, obj) {
 	
 	var authUserNo = $('#authUserNo').val(); //로그인한 사용자
 	var userNo = $('#userNo').val(); //댓글 작성자
 	
 	var str = '';
-	
+	str += '<div id="comments-'+cmtVo.CMTNO+'">'
 	str += '<div class="comments">';
+	//답글일 때 화살표 이미지 표시
+	if(cmtVo.DEPTH == 1) {
+	str += '	<img src="'+contextPath+'/assets/image/reply.png">';	
+	}
 	str += '	<span class="form-text">'+cmtVo.NAME+'</span>';
 	str += '	<span class="cmt-content">';
 	str += '		<span id="content-'+cmtVo.CMTNO+'">'+cmtVo.CONTENT+'</span>';
@@ -229,8 +272,8 @@ function render(cmtVo) {
 	}
 	
 	//게시글 작성자가 로그인 했을 때 답글 버튼 출력
-	if(authUserNo == userNo) {
-	str += '		<button class="replyBtn" id="replyBtn" data-no="'+cmtVo.CMTNO+'">답글</button>';
+	if(authUserNo == userNo && cmtVo.DEPTH == 0 && cmtVo.CNT == 1) {
+	str += '		<button class="replyBtn" id="replyBtn-'+cmtVo.CMTNO+'" data-no="'+cmtVo.CMTNO+'">답글</button>';
 	}
 	str += '	</span>';
 	str += '	<span>'+cmtVo.REGDATE+'</span>';
@@ -240,11 +283,12 @@ function render(cmtVo) {
 	if(authUserNo == userNo) {
 	str += '<div class="reply" id="reply-'+cmtVo.CMTNO+'">';
 	str += '	<img src="'+contextPath+'/assets/image/reply.png">';
-	str += '	<input type="text" class="replytxt" maxlength="30">';
-	str += '	<button type="button" class="replySubmit">답글 등록</button>';
+	str += '	<input type="text" class="replytxt" id="re-txt-'+cmtVo.CMTNO+'" name="content" value="" maxlength="30">';
+	str += '	<button type="button" class="replySubmit" data-no="'+cmtVo.CMTNO+'">답글 등록</button>';
 	str += '</div>';
+	str += '</div>'
 	}
 	
 	
-	$('#cmtRead').append(str);
+	$(obj).append(str);
 }

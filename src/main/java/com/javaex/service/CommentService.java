@@ -1,5 +1,6 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,12 +54,31 @@ public class CommentService {
 	//댓글 삭제
 	public String deleteCmt(int cmtNo) {
 		
-		int cnt = cmtDao.deleteCmt(cmtNo);
+		//댓글인지 답글인지 확인
+		int depth = cmtDao.getDepth(cmtNo);
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cmtNo", cmtNo);
+		map.put("depth", depth);
+		
+		int cnt = cmtDao.deleteCmt(map);
 		
 		if(cnt > 0) {
 			return "success";
 		}
 		return "fail";
+	}
+
+	
+	//답글 등록
+	public Map<String, Object> writeReply(CommentVo cmtVo) {
+		int cnt = cmtDao.insertReply(cmtVo);
+		
+		if(cnt > 0) {
+			return cmtDao.getCmt(cmtVo.getCmtNo());
+		}
+		
+		return null;
 	}
 
 	

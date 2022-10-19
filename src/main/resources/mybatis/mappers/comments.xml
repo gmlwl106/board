@@ -12,11 +12,17 @@
 			        ,name
 			        ,content
 			        ,to_char(reg_date, 'yyyy-mm-dd hh24:mi') regDate
-			        ,group_no
-			from comments c, users u
+			        ,c.group_no
+			        ,depth
+			        ,cn.cnt cnt
+			from comments c, users u, (select group_no
+			                                ,count(group_no) cnt
+			                            from comments
+			                            group by group_no) cn
 			where c.user_no = u.user_no
-			and post_no = #{postNo}
-			order by group_no, reg_date
+			and c.cmt_no = cn.group_no(+)
+			and post_no = 62
+			order by c.group_no, depth
 		]]>
 	</select>
 
@@ -27,7 +33,7 @@
 		</selectKey>
 		<![CDATA[
 			insert into comments
-			values(#{cmtNo}, #{postNo}, #{userNo}, #{content}, sysdate, #{cmtNo})
+			values(#{cmtNo}, #{postNo}, #{userNo}, #{content}, sysdate, #{cmtNo}, 0)
 		]]>
 	</insert>
 	
@@ -41,6 +47,7 @@
 					,content
 					,to_char(reg_date, 'yyyy-mm-dd hh24:mi') regDate
 					,group_no groupNo
+					,depth
 			from comments c, users u
 			where c.user_no = u.user_no
 			and cmt_no = #{cmtNo}
@@ -57,11 +64,38 @@
 	</insert>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="deleteCmt" parameterType="int">
+	<delete id="deleteCmt" parameterType="hashmap">
 		<![CDATA[
 			delete from comments
-			where group_no = #{cmtNo}
 		]]>
+		<choose>
+			<when test='depth == 0'>
+				where group_no = #{cmtNo}
+			</when>
+			<when test='depth == 1'>
+				where cmt_no = #{cmtNo}
+			</when>
+		</choose>
 	</delete>
+	
+	
+	<!-- 답글 등록 -->
+	<insert id="insertReply" parameterType="cmtVo">
+		<selectKey keyProperty="cmtNo" resultType="int" order="BEFORE">
+			select SEQ_CMT_NO.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into comments
+			values(#{cmtNo}, #{postNo}, #{userNo}, #{content}, sysdate, #{groupNo}, #{depth})
+		]]>
+	</insert>
 
+	<!-- Depth 가져오기 -->
+	<select id="getDepth" parameterType="int" resultType="int">
+		<![CDATA[
+			select depth
+			from comments
+			where cmt_no = #{cmtNo}
+		]]>
+	</select>
 </mapper>
