@@ -37,7 +37,7 @@ public class UserController {
 	@RequestMapping(value="join", method= {RequestMethod.GET, RequestMethod.POST})
 	public String join(@ModelAttribute UserVo userVo) {
 		userService.join(userVo);
-		return "redirect:/joinOk";
+		return "redirect:/user/joinOk";
 	}
 	
 	//회원가입 성공 폼

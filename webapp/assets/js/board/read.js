@@ -4,6 +4,9 @@
  
 $(document).ready(function() {
 	
+	//url 파라미터 숨기기
+	history.replaceState({}, null, location.pathname);
+	
 	//로그인 안했을때 로그인창으로 이동
 	var authUserNo = $("#authUserNo").val();
 	if(authUserNo == null || authUserNo == "" || authUserNo == undefined || isNaN(authUserNo)) {

@@ -10,6 +10,8 @@
 <!-- css -->
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 
@@ -153,5 +155,16 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	//url 파라미터 숨기기
+	history.replaceState({}, null, location.pathname);
+	
+});
+
+</script>
 
 </html>

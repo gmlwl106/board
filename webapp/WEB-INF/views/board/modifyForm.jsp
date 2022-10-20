@@ -11,11 +11,7 @@
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
 <!-- js -->
-<script type="text/javascript">
-	window.contextPath = '${pageContext.request.contextPath}';
-</script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/board/modifyForm.js"></script>
 </head>
 
 
@@ -53,7 +49,7 @@
 	
 				<div id="board">
 					<div id="modifyForm">
-						<form action="${pageContext.request.contextPath }/board/modify" method="get">
+						<form id="modify-form" action="${pageContext.request.contextPath }/board/modify" method="get">
 							<!-- 글번호 -->
 							<input type="hidden" name="postNo" value="${pMap.POSTNO }">
 							
@@ -116,5 +112,27 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	/*수정 버튼 클릭했을때*/
+	$('#modify-form').on('submit', function() {
+		var title = $('#txt-title').val();
+		var content = $('#txt-content').val();
+		
+		if(title == null || title == "") {
+			alert('제목을 입력해주세요.');
+			return false;
+		} else if(content == null || content == "") {
+			alert('내용을 입력해주세요.');
+			return false;
+		}
+	});
+	
+});
+
+</script>
 
 </html>
