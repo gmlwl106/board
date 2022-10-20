@@ -91,12 +91,16 @@ public class BoardService {
 			return "fail";
 		}
 	}
+	
+	
+	//조회수 올리기
+	public void viewHitUp(int no) {
+		postDao.updateHit(no);
+	}
 
 	
 	//게시글 가져오기
 	public Map<String, Object> getPost(int no) {
-		//조회수 올리기
-		postDao.updateHit(no);
 		
 		//게시글 상세내용 가져오기
 		Map<String, Object> post = postDao.getPost(no);
