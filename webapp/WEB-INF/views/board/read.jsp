@@ -89,7 +89,7 @@
 									
 									<c:otherwise>
 										<c:forEach items="${pMap.fileList }" var="fileVo">
-											<a href="${pageContext.request.contextPath }/download/${fileVo.fileNo}">${fileVo.saveName }</a>
+											<a href="${pageContext.request.contextPath }/download/file/${fileVo.fileNo}">${fileVo.saveName }</a>
 										</c:forEach>
 									</c:otherwise>
 									
@@ -105,11 +105,12 @@
 							
 							<c:choose>
 								<c:when test="${authUser.userNo eq pMap.post.USERNO }">
-									<a id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${pMap.post.POSTNO}">수정</a>
-									<a id="btn_delete" href="">삭제</a>
+									<a class="btns" id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${pMap.post.POSTNO}">수정</a>
+									<a class="btns" id="btn_delete" href="">삭제</a>
 								</c:when>
 							</c:choose>
-							<a id="btn_list" href="${pageContext.request.contextPath }/board/list?crtPage=${crtPage }&kwdOpt=${kwdOpt }&keyword=${keyword}">목록</a>
+							<a class="btns" id="btn_list" href="${pageContext.request.contextPath }/board/list?crtPage=${crtPage }&kwdOpt=${kwdOpt }&keyword=${keyword}">목록</a>
+							<a class="btns" id="download" href="${pageContext.request.contextPath }/download/post/${pMap.post.POSTNO}">엑셀로 다운</a>
 							
 						</form>
 						<!-- //form -->

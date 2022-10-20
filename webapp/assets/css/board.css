@@ -283,8 +283,8 @@
 }
 
 
-/* 수정 버튼 */
-#board #read #btn_modify {
+/* 버튼 */
+#board #read .btns {
 	border: 1px solid #A6A6A6;
 	border-radius: 2px;
 	background-color: #E5E5E5;
@@ -293,30 +293,6 @@
 	font-size: 14px;
 	float: right;
 	cursor: pointer;
-	
-}
-
-/* 삭제 버튼 */
-#board #read #btn_delete {
-	border: 1px solid #A6A6A6;
-	border-radius: 2px;
-	background-color: #E5E5E5;
-	padding: 5px 20px 5px 20px;
-	margin: 0px 0px 0px 10px;
-	font-size: 14px;
-	float: right;
-	cursor: pointer;
-}
-
-/* 목록 버튼 */
-#board #read #btn_list {
-	border: 1px solid #A6A6A6;
-	border-radius: 2px;
-	background-color: #E5E5E5;
-	padding: 5px 20px 5px 20px;
-	margin: 0px 0px 0px 10px;
-	font-size: 14px;
-	float: right;
 }
 
 
