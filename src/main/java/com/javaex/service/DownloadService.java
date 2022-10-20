@@ -77,8 +77,6 @@ public class DownloadService {
 		}
 		
 		
-		
-		
 		////////////////////////////////엑셀파일 생성/////////////////////////////////////////////////////
 		//.xlsx 확장자 지원
 		XSSFWorkbook workbook = null; 
