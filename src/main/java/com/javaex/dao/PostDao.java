@@ -49,6 +49,7 @@ public class PostDao {
 
 	//게시글 삭제
 	public int deletePost(int no) {
+		System.out.println("deletePost");
 		return sqlSession.delete("post.delete", no);
 	}
 

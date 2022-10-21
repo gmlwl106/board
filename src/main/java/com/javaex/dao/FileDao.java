@@ -33,4 +33,9 @@ public class FileDao {
 	public String getName(int no) {
 		return sqlSession.selectOne("files.getName", no);
 	}
+
+	//파일 삭제
+	public int deleteFile(int no) {
+		return sqlSession.delete("files.delete", no);
+	}
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.CategoryDao;
+import com.javaex.dao.CommentDao;
 import com.javaex.dao.FileDao;
 import com.javaex.dao.PostDao;
 import com.javaex.vo.CategoryVo;
@@ -29,6 +30,8 @@ public class BoardService {
 	private PostDao postDao;
 	@Autowired
 	private FileDao fileDao;
+	@Autowired
+	private CommentDao cmtDao;
 
 	
 	//카테고리 가져오기
@@ -193,6 +196,14 @@ public class BoardService {
 
 	//게시글 삭제
 	public String delete(int no) {
+		
+		//파일 삭제
+		fileDao.deleteFile(no);
+		
+		//댓글 삭제
+		cmtDao.deleteCmt(no);
+		
+		//게시글 삭제
 		int cnt = postDao.deletePost(no);
 		
 		if(cnt > 0) {

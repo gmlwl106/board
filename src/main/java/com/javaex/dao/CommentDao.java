@@ -50,5 +50,10 @@ public class CommentDao {
 	public int getDepth(int cmtNo) {
 		return sqlSession.selectOne("comments.getDepth", cmtNo);
 	}
+
+	//(글삭제) 댓글 삭제
+	public int deleteCmt(int no) {
+		return sqlSession.delete("comments.delete", no);
+	}
 	
 }

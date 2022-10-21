@@ -133,6 +133,7 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value="delete", method = {RequestMethod.GET, RequestMethod.POST})
 	public String delete(@RequestParam(value="postNo") int no) {
+		System.out.println("delete");
 		return boardService.delete(no);
 	}
 	

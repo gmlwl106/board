@@ -103,4 +103,12 @@
 			where cmt_no = #{cmtNo}
 		]]>
 	</select>
+	
+	<!-- 파일 삭제 -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete from comments
+			where post_no = #{no}
+		]]>
+	</delete>
 </mapper>

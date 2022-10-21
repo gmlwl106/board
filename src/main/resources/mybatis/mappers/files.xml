@@ -40,4 +40,12 @@
 			where file_no = #{no}
 		]]>
 	</select>
+	
+	<!-- 파일 삭제 -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete from files
+			where post_no = #{no}
+		]]>
+	</delete>
 </mapper>
