@@ -1,7 +1,6 @@
 package com.javaex.service;
 
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
@@ -39,11 +38,12 @@ public class DownloadService {
 	public void fileDownload(HttpServletResponse response, int no) throws Exception {
 		//파일 경로 가져오기
 		String path = fileDao.getFilePath(no);
+		//파일 이름 가져오기
+		String name = fileDao.getName(no);
 		
 		try {
 			
-			File file = new File(path);
-			response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());
+			response.setHeader("Content-Disposition", "attachment;filename=" + name);
 			// 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
 			
 			

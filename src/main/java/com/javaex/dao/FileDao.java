@@ -28,4 +28,9 @@ public class FileDao {
 	public String getFilePath(int no) {
 		return sqlSession.selectOne("files.getFilePath", no);
 	}
+
+	//파일 이름 가져오기
+	public String getName(int no) {
+		return sqlSession.selectOne("files.getName", no);
+	}
 }

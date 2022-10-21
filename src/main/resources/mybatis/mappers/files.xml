@@ -31,4 +31,13 @@
 			where file_no = #{no}
 		]]>
 	</select>
+	
+	<!-- 파일 이름 가져오기 -->
+	<select id="getName" parameterType="int" resultType="String">
+		<![CDATA[
+			select save_name
+			from files
+			where file_no = #{no}
+		]]>
+	</select>
 </mapper>

@@ -34,7 +34,6 @@ INCREMENT BY 1
 NOCACHE;
 
 
-
 --CATEGORY 테이블 생성
 CREATE TABLE CATEGORY (
 	category_no NUMBER, /* 카테고리 번호 */
@@ -106,6 +105,7 @@ NOCACHE;
 CREATE TABLE FILES (
 	file_no NUMBER, /* 파일 번호 */
     post_no NUMBER NOT NULL, /* 글 번호 */
+    original_name VARCHAR2(500) NOT NULL, /* 원본 파일명 */
     save_name VARCHAR2(500) NOT NULL, /* 저장명 */
     file_path VARCHAR2(2000) NOT NULL, /* 파일 경로 */
 	Primary Key (file_no),

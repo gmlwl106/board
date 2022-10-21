@@ -55,12 +55,12 @@ public class BoardService {
 					//확장자
 					String exName = orgName.substring(orgName.lastIndexOf("."));
 					//현재시간+랜던UUID+확장자
-					String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+					String sysName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 					//파일경로(디렉토리+저장파일명)
-					String filePath = "C:\\workspace\\ean_board\\webapp\\assets\\files\\"+saveName;
+					String filePath = "C:\\workspace\\ean_board\\webapp\\assets\\files\\"+sysName;
 					
 					//DB 저장
-					FileVo fileVo = new FileVo(postNo, saveName, filePath);
+					FileVo fileVo = new FileVo(postNo, orgName, filePath);
 					int count = fileDao.insertFile(fileVo);
 					
 					if(count > 0) {

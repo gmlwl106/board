@@ -14,15 +14,15 @@ public class FileVo {
 		this.postNo = postNo;
 		this.saveName = saveName;
 		this.filePath = filePath;
-	}
+	}	
 	public FileVo(int fileNo, int postNo, String saveName, String filePath) {
 		this.fileNo = fileNo;
 		this.postNo = postNo;
 		this.saveName = saveName;
 		this.filePath = filePath;
 	}
-	
-	
+
+
 	public int getFileNo() {
 		return fileNo;
 	}
