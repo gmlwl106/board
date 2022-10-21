@@ -72,6 +72,14 @@
 								</select>
 								<input type="text" name="keyword" value="${param.keyword }">
 								<button type="submit" id=btn_search>검색</button>
+								<c:choose>
+									<c:when test="${not empty authUser }">
+										<div>
+											<a href="${pageContext.request.contextPath }/download/searchResult?kwdOpt=${param.kwdOpt}&keyword=${param.keyword}">검색결과 다운받기</a>
+										</div>
+									</c:when>
+								</c:choose>
+								
 							</div>
 						</form>
 						<table>

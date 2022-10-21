@@ -76,7 +76,7 @@
 			</when>
 		</choose>
 		<![CDATA[
-			                order by p.reg_date desc))
+			                order by p.post_no desc))
 		]]>
 		<![CDATA[
 			where rn >= #{startRnum}

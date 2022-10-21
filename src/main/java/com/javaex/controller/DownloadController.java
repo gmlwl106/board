@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.DownloadService;
 
@@ -31,5 +32,15 @@ public class DownloadController {
 	public void postDownload(HttpServletResponse response, @PathVariable(value="no") int no) throws Exception {
 		System.out.println("postDownloadController->download("+no+")");
 		downService.postDownload(no, response);
+	}
+	
+	
+	//검색결과 다운로드
+	@RequestMapping(value="searchResult", method= {RequestMethod.GET, RequestMethod.POST})
+	public void searchResultDownload(HttpServletResponse response,
+			@RequestParam(value="kwdOpt", required = false, defaultValue = "") String kwdOpt,
+			@RequestParam(value="keyword", required = false, defaultValue = "") String keyword) throws Exception {
+		System.out.println("searchResultDownload->download("+kwdOpt+","+keyword+")");
+		downService.searchResultDownload(response, kwdOpt, keyword);
 	}
 }
