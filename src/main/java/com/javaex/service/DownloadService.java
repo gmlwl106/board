@@ -12,7 +12,10 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -124,11 +127,9 @@ public class DownloadService {
 			//현재시간+랜던UUID+확장자
 			String saveName = "[POST]"+System.currentTimeMillis() + UUID.randomUUID().toString() + ".xlsx";
 			
-			
+			response.setContentType("ms-vnd/excel");
 			response.setHeader("Content-Disposition", "attachment;filename=" + saveName);
-			
 			OutputStream out = response.getOutputStream();
-
 			workbook.write(out);
 	
 		}catch(Exception e){
@@ -168,7 +169,7 @@ public class DownloadService {
 			sheet = workbook.createSheet("search_result"); // 워크시트 이름 설정
 			
 			//헤더 스타일 설정
-			CellStyle headerCellStyle = workbook.createCellStyle();
+			XSSFCellStyle headerCellStyle = workbook.createCellStyle();
 			// 폰트 스타일
 			XSSFFont font = workbook.createFont();
 			font.setBold(true); //bold 설정
@@ -178,6 +179,10 @@ public class DownloadService {
 			headerCellStyle.setBorderBottom((short) 1); // 테두리 아래쪽
 			headerCellStyle.setBorderLeft((short) 1);   // 테두리 왼쪽
 			headerCellStyle.setBorderRight((short) 1);  // 테두리 오른쪽
+			//배경색
+			headerCellStyle.setFillForegroundColor(IndexedColors.PALE_BLUE.getIndex());
+			headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			
 			
 			//헤더 생성
 			row = sheet.createRow(rowNo++);
@@ -213,11 +218,9 @@ public class DownloadService {
 			//현재시간+랜던UUID+확장자
 			String saveName = "[result]"+System.currentTimeMillis() + UUID.randomUUID().toString() + ".xlsx";
 			
-			
+			response.setContentType("ms-vnd/excel");
 			response.setHeader("Content-Disposition", "attachment;filename=" + saveName);
-			
 			OutputStream out = response.getOutputStream();
-			
 			workbook.write(out);
 		
 		}catch(Exception e){

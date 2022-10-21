@@ -42,10 +42,6 @@ public class BoardService {
 		postVo.setContent(postVo.getContent().replace("\r\n", "<br>")); //줄바꿈
 		//게시글 등록
 		int cnt = postDao.insertPost(postVo);
-		postDao.insertPost(postVo);
-		postDao.insertPost(postVo);
-		postDao.insertPost(postVo);
-		postDao.insertPost(postVo);
 		
 		if(cnt > 0) {
 			//파일 등록
