@@ -57,7 +57,7 @@
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="password" id="input-pass" name="password" value="" oninput="handleOnInput(this)" maxlength="10" placeholder="비밀번호를 입력하세요"	>
+								<input type="password" id="input-pass" name="password" value="" oninput="handleOnInput(this)" maxlength="20" placeholder="비밀번호를 입력하세요"	>
 							</div>
 	
 							<!-- 이름 -->
