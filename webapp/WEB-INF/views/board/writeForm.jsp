@@ -72,7 +72,7 @@
 						
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content" name="content" value=""></textarea>
+								<textarea id="txt-content" name="content" value="" maxlength="1000"></textarea>
 							</div>
 							
 							<!-- 첨부파일 -->

@@ -99,7 +99,9 @@
 						
 							<!-- 내용 -->
 							<div id="txt-content">
-								<span class="form-value" >${pMap.post.CONTENT }</span>
+								<p>
+									<span class="form-value max-leng" >${pMap.post.CONTENT }</span>
+								</p>
 							</div>
 							
 							

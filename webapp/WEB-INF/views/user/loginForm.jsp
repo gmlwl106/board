@@ -11,6 +11,8 @@
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
 
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -46,13 +48,13 @@
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
-								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+								<input type="text" id="input-uid" name="id" value="" oninput="handleOnInput(this)" maxlength="10" placeholder="아이디를 입력하세요">
 							</div>
 	
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">비밀번호</label> 
-								<input type="password" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
+								<input type="password" id="input-pass" name="password" value="" oninput="handleOnInput(this)" maxlength="10" placeholder="비밀번호를 입력하세요"	>
 							</div>
 							
 							<c:if test="${param.result eq 'fail' }">
@@ -83,5 +85,13 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+
+	/* 영어만 입력 */
+	function handleOnInput(e)  {
+	  e.value = e.value.replace(/[^A-Za-z0-9]/ig, '')
+	}
+</script>
 
 </html>

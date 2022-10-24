@@ -87,7 +87,7 @@
 						
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content" name="content" value="">${pMap.CONTENT }</textarea>
+								<textarea id="txt-content" name="content" value="" maxlength="1000">${pMap.CONTENT }</textarea>
 							</div>
 							
 							<a id="btn_cancel" href="${pageContext.request.contextPath }/board/list">취소</a>

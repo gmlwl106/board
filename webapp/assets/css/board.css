@@ -282,6 +282,12 @@
     min-height: 200px;
 }
 
+#board #read #txt-content .max-leng {
+	display: block;
+	max-width: 800px;
+	word-break:break-all;
+}
+
 
 /* 버튼 */
 #board #read .btns {
