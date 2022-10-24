@@ -178,6 +178,7 @@ $(document).ready(function() {
 		
 		//답글 입력창 토글
 		$('#reply-'+cmtNo).toggle('fast');
+		$this.text($this.text() == '답글'? '닫기':'답글');
 	});
 	
 	/*답글 등록 버튼 클릭 했을 때*/
