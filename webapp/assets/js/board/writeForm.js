@@ -3,13 +3,7 @@
  */
  
  $(document).ready(function() {
-	
 
-	//로그인 안했을때 로그인창으로 이동
-	var authUserNo = $("#authUserNo").val();
-	if(authUserNo == null || authUserNo == "" || authUserNo == undefined || isNaN(authUserNo)) {
-		location.href = contextPath+"/user/loginForm";
-	}
 	
 	//파일 리스트
 	var fileList = [];

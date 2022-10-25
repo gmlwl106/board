@@ -52,7 +52,7 @@ public class BoardController {
 			@RequestParam(value="kwdOpt", required = false, defaultValue = "") String kwdOpt,
 			@RequestParam(value="keyword", required = false, defaultValue = "") String keyword) {
 		
-		//로그인 안한 사용자가 접근했을때 조회수 안올라가게
+		
 		if(session.getAttribute("authUser") != null) {
 			//쿠키로 조회수 중복 방지
 			Cookie oldCookie = null;
@@ -85,26 +85,32 @@ public class BoardController {
 				newCookie.setMaxAge(60);
 				response.addCookie(newCookie);
 			}
+		
+		
+			
+			//게시글 가져오기
+			Map<String, Object> pMap = boardService.getPost(no);
+			model.addAttribute("pMap", pMap);
+			model.addAttribute("crtPage", crtPage);
+			model.addAttribute("kwdOpt", kwdOpt);
+			model.addAttribute("keyword", keyword);
+			return "board/read";
 		}
 		
-		
-		//게시글 가져오기
-		Map<String, Object> pMap = boardService.getPost(no);
-		model.addAttribute("pMap", pMap);
-		model.addAttribute("crtPage", crtPage);
-		model.addAttribute("kwdOpt", kwdOpt);
-		model.addAttribute("keyword", keyword);
-		return "board/read";
+		return "redirect:/user/loginForm";
 	}
 	
 	
 	//글쓰기 폼
 	@RequestMapping(value="writeForm", method = {RequestMethod.GET, RequestMethod.POST})
-	public String writeForm(Model model) {
-		//카테고리 리스트 가져오기
-		List<CategoryVo> cateList = boardService.getCategory();
-		model.addAttribute("cateList", cateList);
-		return "board/writeForm";
+	public String writeForm(Model model, HttpSession session) {
+		if(session.getAttribute("authUser") != null) {
+			//카테고리 리스트 가져오기
+			List<CategoryVo> cateList = boardService.getCategory();
+			model.addAttribute("cateList", cateList);
+			return "board/writeForm";
+		}
+		return "redirect:/user/loginForm";
 	}
 	
 	
@@ -143,6 +149,13 @@ public class BoardController {
 	public String delete(@RequestParam(value="postNo") int no) {
 		System.out.println("delete");
 		return boardService.delete(no);
+	}
+	
+	
+	//통계 게시판
+	@RequestMapping(value="stat", method = {RequestMethod.GET, RequestMethod.POST})
+	public String stat() {
+		return "board/statistics";
 	}
 	
 }
