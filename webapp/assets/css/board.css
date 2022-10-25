@@ -458,7 +458,6 @@
 #board #stat table>thead>tr>th {
     font-weight: bold; 
     padding: 10px 0px;
-    min-width: auto;
 }
 
 #board #stat table>tbody>tr { 

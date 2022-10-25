@@ -29,7 +29,7 @@
 			<div id="content">
 
 				<div id="content-head">
-					<h3>게시판</h3>
+					<h3>통계</h3>
 					<div id="location">
 						<ul>
 							<li>홈</li>
@@ -45,73 +45,30 @@
 					<div id="stat">
 						
 						<table>
-							<tr>
-								<th>작성자</th>
-								<th>1월</th>
-								<th>2월</th>
-								<th>3월</th>
-								<th>4월</th>
-								<th>5월</th>
-								<th>6월</th>
-								<th>7월</th>
-								<th>8월</th>
-								<th>9월</th>
-								<th>10월</th>
-								<th>11월</th>
-								<th>12월</th>
-								<th>총합계</th>
-							</tr>
+
+							<thead>
+								<tr>
+									<th>작성자</th>
+									<th>01월</th>
+									<th>02월</th>
+									<th>03월</th>
+									<th>04월</th>
+									<th>05월</th>
+									<th>06월</th>
+									<th>07월</th>
+									<th>08월</th>
+									<th>09월</th>
+									<th>10월</th>
+									<th>11월</th>
+									<th>12월</th>
+									<th>총합계</th>
+								</tr>
+							</thead>
+
+							<!-- 데이터 추가되는 부분 -->
+							<tbody id="stat-table">
 							
-							<tr>
-								<td>박깜이</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-							</tr>
-							
-							<tr>
-								<td>박깜이</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-							</tr>
-							
-							<tr>
-								<td>박깜이</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-							</tr>
+							</tbody>
 						</table>
 					
 					</div>
