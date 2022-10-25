@@ -151,6 +151,7 @@
     vertical-align: middle;
     border: 1px solid #dddddd;
     color: #333333;
+    cursor: default;
 }
 .filebox label {
     display: inline-block;
