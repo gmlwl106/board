@@ -445,5 +445,26 @@
 
 
 /****************************************************************/
-/* 게시판 통계 보기 ************************************************/
+/* 게시판 통계 보기 *********************************************/
 /****************************************************************/
+
+#board #stat table>thead>tr {
+    border-top: 2px solid #808080; 
+    border-bottom: 2px solid #808080;
+    background-color: #9bc9d6; 
+
+}
+
+#board #stat table>thead>tr>th {
+    font-weight: bold; 
+    padding: 10px 0px;
+    min-width: auto;
+}
+
+#board #stat table>tbody>tr { 
+    border-bottom: 1px solid #808080;
+}
+
+#board #stat table>tbody>tr>td {
+    padding: 10px 0px 10px 0px;
+}
