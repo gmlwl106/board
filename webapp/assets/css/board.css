@@ -468,3 +468,18 @@
 #board #stat table>tbody>tr>td {
     padding: 10px 0px 10px 0px;
 }
+
+#board #stat div {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+#board #stat #month-select {
+	width: 80px;
+	height: 30px;
+}
+
+#board #stat #selectBtn {
+	width: 40px;
+	height: 30px;
+}
