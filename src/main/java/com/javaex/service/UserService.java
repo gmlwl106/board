@@ -1,5 +1,11 @@
 package com.javaex.service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +43,76 @@ public class UserService {
 	//로그인
 	public UserVo login(UserVo userVo) {
 		return userDao.selectID(userVo);
+	}
+	
+	//외부 DB에서 유저 정보 가져오기
+	public void getUser() {
+		
+		// 0. import java.sql.*;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; //결과를 받아옴
+		
+		try {
+			// 1. JDBC 드라이버 (Oracle) 로딩
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			// 2. Connection 얻어오기
+			String url = "jdbc:oracle:thin:@192.168.0.79:1521:xe";
+			conn = DriverManager.getConnection(url, "S20220604", "tiger");
+			
+			// 3. SQL문 준비 / 바인딩 / 실행
+			//SQL문 준비
+			String query = "";
+			query += "	select user_name	";
+			query += "	,user_id	";
+			query += "	,user_pw	";
+			query += "	from member	";
+
+			
+			//바인딩
+			pstmt = conn.prepareStatement(query); //문자열 쿼리로 만들기		
+			
+			
+			//실행
+			rs = pstmt.executeQuery();
+			
+			System.out.println("-------------------------------------------------------------------------");
+			// 4.결과처리
+			while(rs.next()) {
+				String name = rs.getString(1);
+				String id = rs.getString(2);
+				String password = rs.getString(3);	
+					
+				
+				UserVo user = new UserVo(0, name, id, password, "female");
+
+				
+				System.out.println(user.toString());
+				System.out.println("-------------------------------------------------------------------------");
+				
+			} //알아서 끝까지 가면 while문 끝냄
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("error: 드라이버 로딩 실패 - " + e);
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			// 5. 자원정리
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				System.out.println("error:" + e);
+			}
+		}
 	}
 
 }
