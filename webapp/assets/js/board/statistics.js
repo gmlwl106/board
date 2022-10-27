@@ -38,7 +38,7 @@ function getData(selected) {
 			for(var i=0; i<data.length; i++) {
 				render(data[i]);
 			}
-			$('th:nth-child(0)').hide();
+
 			if(selected !== "all") {
 				for(var i=2; i<14; i++) {
 					if(selected == (i-1)) {
