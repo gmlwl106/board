@@ -7,6 +7,7 @@
 		<typeAlias alias="postVo" type="com.javaex.vo.PostVo" />
 		<typeAlias alias="fileVo" type="com.javaex.vo.FileVo" />
 		<typeAlias alias="cmtVo" type="com.javaex.vo.CommentVo" />
+		<typeAlias alias="proVo" type="com.javaex.vo.ProductVo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/users.xml" />
@@ -14,5 +15,6 @@
 		<mapper resource="mybatis/mappers/post.xml" />
 		<mapper resource="mybatis/mappers/files.xml" />
 		<mapper resource="mybatis/mappers/comments.xml" />
+		<mapper resource="mybatis/mappers/product.xml" />
 	</mappers>
 </configuration>

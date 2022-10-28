@@ -22,7 +22,7 @@ public class UserController {
 	//회원가입 폼
 	@RequestMapping(value="joinForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {
-		userService.getUser();
+		//userService.getUser();
 		return "user/joinForm";
 	}
 	
