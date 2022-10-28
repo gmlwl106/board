@@ -9,7 +9,7 @@ public class MainController {
 
 	//메인화면
 	@RequestMapping(value="/", method= {RequestMethod.GET, RequestMethod.POST})
-	public String test() {
+	public String main() {
 		return "main/index";
 	}
 }
