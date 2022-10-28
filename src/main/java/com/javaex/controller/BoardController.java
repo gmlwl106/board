@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BoardService;
-import com.javaex.service.UserService;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.PostVo;
 
@@ -156,8 +155,6 @@ public class BoardController {
 	//통계 게시판
 	@RequestMapping(value="stat", method = {RequestMethod.GET, RequestMethod.POST})
 	public String stat() {
-		UserService userService = new UserService();
-		userService.getUser();
 		return "board/statistics";
 	}
 	

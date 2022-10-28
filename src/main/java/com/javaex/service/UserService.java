@@ -77,19 +77,24 @@ public class UserService {
 			//실행
 			rs = pstmt.executeQuery();
 			
-			System.out.println("-------------------------------------------------------------------------");
 			// 4.결과처리
 			while(rs.next()) {
 				String name = rs.getString(1);
 				String id = rs.getString(2);
 				String password = rs.getString(3);	
 					
+				int num = (int)(Math.random()*100);
+				String gender = ""; //성별 랜덤
+				if(num > 50) {
+					gender = "male";
+				} else {
+					gender = "female";
+				}
 				
-				UserVo user = new UserVo(0, name, id, password, "female");
-
+				UserVo userVo = new UserVo(0, name, id, password, gender);
+				System.out.println(userVo);
 				
-				System.out.println(user.toString());
-				System.out.println("-------------------------------------------------------------------------");
+				userDao.insertUser(userVo);
 				
 			} //알아서 끝까지 가면 while문 끝냄
 			
