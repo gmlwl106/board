@@ -1,15 +1,5 @@
 package com.javaex.service;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -119,59 +109,4 @@ public class SchedulerService {
 		System.out.println("<<<<<<<<<<스케줄링을 종료했습니다>>>>>>>>>>");
 	}
 
-	@Scheduled(cron = "0 01 16 * * *")
-	public void doGet() {
-		String domain = "http://192.168.0.17:8088/JOA/api/stat/";
-		
-		try {
-			//url 객체 생성
-			URL url = new URL(domain);
-			//connection 생성
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			//요청 메소드 설정
-			conn.setRequestMethod("GET");
-			
-			//요청 설정
-			conn.setRequestProperty("User-Agent", "Mozilla/5.0");
-            conn.setRequestProperty("Accept-Language", "ko-kr");
-            conn.setRequestProperty("Access-Control-Allow-Origin", "*");
-            conn.setRequestProperty("Content-Type", "application/json");
-			
-			conn.setDoInput(true);
-			conn.setDoOutput(true);
-			conn.setUseCaches(false);
-			conn.connect();
-			
-			OutputStream out = conn.getOutputStream();
-			OutputStreamWriter osw = new OutputStreamWriter(out);
-			BufferedWriter bw = new BufferedWriter(osw);
-			
-			InputStream in = conn.getInputStream();
-			InputStreamReader isr = new InputStreamReader(in);
-			BufferedReader br = new BufferedReader(isr);
-
-			while (true) {
-				String str = br.readLine();
-
-				if (str == null) {
-					break;
-				}
-
-				System.out.println(str);
-				bw.write(str);
-				bw.newLine();
-			}
-
-			bw.close();
-			br.close();
-			
-			
-
-		} catch (MalformedURLException e) {
-			System.out.println(domain + " is not a URL I understand");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }

@@ -9,8 +9,8 @@ $(document).ready(function() {
 	
 	$('#selectBtn').on('click', function() {
 		$('#stat-table').empty();
-		var selected = $('#month-select').val();
-		getData(selected);
+		var month = $('#month-select').val();
+		getData(month);
 
 	});
 
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 
 /*JOA 프로젝트에서 통계 데이터 가져오기*/
-function getData(selected) {
+function getData(month) {
 	
 	for(var i=2; i<15; i++) {
 		$('th:nth-child('+i+')').show();
@@ -27,7 +27,7 @@ function getData(selected) {
 	$.ajax({
 		url : "http://192.168.0.17:8088/JOA/api/stat/",
 		type : "get",
-		data : {selected},
+		data : {month},
 		contentType : "application/json",
 		dataType : "json",
 		
@@ -39,9 +39,9 @@ function getData(selected) {
 				render(data[i]);
 			}
 
-			if(selected !== "all") {
+			if(month !== "all") {
 				for(var i=2; i<14; i++) {
-					if(selected == (i-1)) {
+					if(month == (i-1)) {
 						console.log(i-1);
 						continue;
 					}

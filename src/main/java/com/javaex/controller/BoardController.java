@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -156,6 +157,14 @@ public class BoardController {
 	@RequestMapping(value="stat", method = {RequestMethod.GET, RequestMethod.POST})
 	public String stat() {
 		return "board/statistics";
+	}
+	
+	//통계 게시판2
+	@RequestMapping(value="stat2", method = {RequestMethod.GET, RequestMethod.POST})
+	public String stat2(Model model, @RequestParam(value="month", required = false, defaultValue = "all") String month) {
+		JSONArray arr = boardService.getData(month);
+		model.addAttribute("arr", arr);
+		return "board/statistics2";
 	}
 	
 }
