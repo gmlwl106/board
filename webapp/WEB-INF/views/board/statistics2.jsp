@@ -86,7 +86,7 @@
 										</c:when>
 										<c:otherwise>
 											<th>작성자</th>
-											<th>${param.month }</th>
+											<th>${param.month }월</th>
 										</c:otherwise>
 									</c:choose>
 									
