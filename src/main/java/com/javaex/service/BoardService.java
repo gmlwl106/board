@@ -261,7 +261,7 @@ public class BoardService {
 			
 			String data = br.readLine();
 			bw.write(data);
-			System.out.println(data);
+			//System.out.println(data);
 
 			bw.close();
 			br.close();

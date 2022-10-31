@@ -7,6 +7,7 @@
 		<li><a href="${pageContext.request.contextPath }/board/list">일반게시판</a></li>
 		<li><a href="${pageContext.request.contextPath }/board/stat">통계보기</a></li>
 		<li><a href="${pageContext.request.contextPath }/board/stat2">통계보기2</a></li>
+		<li><a href="${pageContext.request.contextPath }/board/stat3">통계보기3</a></li>
 	</ul>
 </div>
 <!-- //aside -->

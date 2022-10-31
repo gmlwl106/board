@@ -167,4 +167,12 @@ public class BoardController {
 		return "board/statistics2";
 	}
 	
+	//통계 게시판
+	@RequestMapping(value="stat3", method = {RequestMethod.GET, RequestMethod.POST})
+	public String stat3(Model model, @RequestParam(value="month", required = false, defaultValue = "all") String month) {
+		JSONArray arr = boardService.getData(month);
+		model.addAttribute("arr", arr);
+		return "board/statistics3";
+	}
+	
 }
