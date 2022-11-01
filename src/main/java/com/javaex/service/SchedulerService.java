@@ -1,5 +1,15 @@
 package com.javaex.service;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,25 +18,22 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.javaex.dao.ProductDao;
 import com.javaex.vo.ProductVo;
 
 @Service
 public class SchedulerService {
 
-	@Autowired
-	private ProductDao proDao;
+	//@Autowired
+	//private ProductDao proDao;
 
-	@Scheduled(cron = "0 0 03 * * *")
 	public void doJob() {
 		Date date = Date.from(Instant.now());
 		System.out.println(date);
 		System.out.println("<<<<<<<<<<스케줄링을 시작합니다>>>>>>>>>>");
 
+		
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -74,14 +81,14 @@ public class SchedulerService {
 				System.out.println(proVo);
 
 				// DB에 추가
-				int cnt = proDao.insertProduct(proVo);
+				/*int cnt = proDao.insertProduct(proVo);
 
 				if (cnt <= 0) {
 					break;
 				} else {
 					System.out.println("[DB에 추가 성공]");
 					System.out.println();
-				}
+				}*/
 
 			} // 알아서 끝까지 가면 while문 끝냄
 
@@ -105,7 +112,65 @@ public class SchedulerService {
 				System.out.println("error:" + e);
 			}
 		}
+		
+		System.out.println("<<<<<<<<<<스케줄링을 종료했습니다>>>>>>>>>>");
+	}
+	
+	
 
+	public void doJob2() {
+		Date date = Date.from(Instant.now());
+		System.out.println(date);
+		System.out.println("<<<<<<<<<<스케줄링을 시작합니다>>>>>>>>>>");
+		
+		String domain = "http://192.168.0.79:8989/ApiStatistic";
+		//String domain = "http://192.168.0.79:8989/ApiSelect?month="+month;
+		
+		try {
+			
+			/* URLConnection 이용해서 데이터 가져옴 */
+			
+			//url 객체 생성
+			URL url = new URL(domain);
+			//connection 생성
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			//요청 메소드 설정
+			conn.setRequestMethod("GET");
+			
+			//요청 설정
+			conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+            conn.setRequestProperty("Accept-Language", "ko-kr");
+            conn.setRequestProperty("Access-Control-Allow-Origin", "*");
+            conn.setRequestProperty("Content-Type", "application/json");
+			
+			conn.setDoInput(true);
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
+			conn.connect();
+			
+			OutputStream out = conn.getOutputStream();
+			OutputStreamWriter osw = new OutputStreamWriter(out);
+			BufferedWriter bw = new BufferedWriter(osw);
+			
+			InputStream in = conn.getInputStream();
+			InputStreamReader isr = new InputStreamReader(in);
+			BufferedReader br = new BufferedReader(isr);
+			
+			
+			String data = br.readLine();
+			bw.write(data);
+			System.out.println(data);
+
+			bw.close();
+			br.close();
+			
+			
+		} catch (MalformedURLException e) {
+			System.out.println(domain + " is not a URL I understand");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("<<<<<<<<<<스케줄링을 종료했습니다>>>>>>>>>>");
 	}
 
