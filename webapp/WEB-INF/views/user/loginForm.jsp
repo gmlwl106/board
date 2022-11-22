@@ -89,9 +89,9 @@
 <script type="text/javascript">
 
 	/* 영어만 입력 */
-	function handleOnInput(e)  {
+	/* function handleOnInput(e)  {
 	  e.value = e.value.replace(/[^A-Za-z0-9]/ig, '')
-	}
+	} */
 </script>
 
 </html>

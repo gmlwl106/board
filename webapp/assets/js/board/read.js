@@ -288,3 +288,28 @@ function render(cmtVo, obj) {
 	
 	$(obj).append(str);
 }
+
+/* 공유하기 */
+function shareTwitter() {
+	var sendText = $('#title').text(); // 전달할 텍스트
+	var sendUrl = $(location).attr('href'); // 전달할 URL
+	window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+}
+
+function shareFacebook() {
+	var sendUrl = "devpad.tistory.com/"; // 전달할 URL
+	window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+}
+
+function shareLink() {
+	var dummy   = document.createElement("input");
+	var text    = location.href;
+	
+	document.body.appendChild(dummy);
+	dummy.value = text;
+	dummy.select();
+	document.execCommand("copy");
+	document.body.removeChild(dummy);
+
+	alert('URL 주소가 복사 되었습니다');
+}

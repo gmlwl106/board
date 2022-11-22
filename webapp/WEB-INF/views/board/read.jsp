@@ -76,7 +76,7 @@
 							<!-- 제목 -->
 							<div class="form-group">
 								<span class="form-text">제 목</span>
-								<span class="form-value">${pMap.post.TITLE }</span>
+								<span class="form-value" id="title">${pMap.post.TITLE }</span>
 							</div>
 							
 							<!-- 첨부파일 -->
@@ -118,6 +118,12 @@
 						<!-- //form -->
 					</div>
 					<!-- //read -->
+					
+					<div>
+						<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a>
+						<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>  
+						<a id="btnKakao" class="link-icon link" href="javascript:shareLink();">링크복사</a>
+					</div>
 					
 					<div id="comment">	
 						<h3>댓글</h3>				

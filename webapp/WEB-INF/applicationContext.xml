@@ -58,8 +58,8 @@
 	<task:scheduler id="scheduler" pool-size="2"/>
 	<!-- <task:annotation-driven scheduler="scheduler"/> -->
 	<task:scheduled-tasks scheduler="scheduler">
-		<task:scheduled ref="SchedulerService" method="doJob" cron="0 22 10 * * *"/>
-		<task:scheduled ref="SchedulerService" method="doJob2" cron="0 25 10 * * *"/>
+		<task:scheduled ref="SchedulerService" method="doJob" cron="0 22 03 * * *"/>
+		<task:scheduled ref="SchedulerService" method="doJob2" cron="0 25 03 * * *"/>
 	</task:scheduled-tasks>
 	
 	<bean id="SchedulerService" class="com.javaex.service.SchedulerService" />
